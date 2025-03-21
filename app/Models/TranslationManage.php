@@ -11,11 +11,22 @@ class TranslationManage extends Model
 
     protected $fillable = [
         'key',
-        'value_az',
         'value_en',
+        'value_az',
         'value_ru',
-        'group',
-        'status',
+        'status'
+    ];
+
+    // Varsayılan çeviriler
+    public static $defaults = [
+        'home' => 'Ana Sayfa',
+        'about' => 'Hakkımızda',
+        'services' => 'Hizmetler',
+        'products' => 'Ürünler',
+        'blog' => 'Blog',
+        'news' => 'Haberler',
+        'contact' => 'İletişim',
+        // ... other translations ...
     ];
 
     public function getValueAttribute()

@@ -376,8 +376,16 @@
                 </div>
 
                 <div class="feature-button">
-
-
+                  <div class="btn-area">
+                    <a href="{{ route('front.products.index') }}" class="theme-btn btn-lg">
+                      {{ isset($settings['explore_products']) ? $settings['explore_products'] : 'Ürünleri Keşfet' }}
+                    </a>
+                    
+                    <a href="{{ route('front.news.index') }}" class="theme-btn-alt">
+                      {{ isset($settings['latest_news']) ? $settings['latest_news'] : 'Son Haberler' }}
+                      <span><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -512,7 +520,7 @@
             </h2>
           </div>
           <a
-            href="news.html"
+            href="{{ route('front.news.index') }}"
             class="theme-btn wow fadeInUp"
             data-wow-delay=".5s"
             >{{ $settings['view_more'] }}<i class="fa-regular fa-car"></i
@@ -529,7 +537,7 @@
               </div>
               <div class="news-content">
                 <h3>
-                  <a href="news-details.html"
+                  <a href="{{ route('front.news.index') }}"
                     >What to Look for When Buying a Pre-Owned Car</a
                   >
                 </h3>
@@ -538,8 +546,8 @@
                   your lifestyle.
                 </p>
                 <div class="link-btn-area">
-                  <a href="news-details.html" class="link">{{ $settings['read_more'] }}</a>
-                  <a href="news-details.html" class="arrow-icon">
+                  <a href="{{ route('front.news.index') }}" class="link">{{ $settings['read_more'] }}</a>
+                  <a href="{{ route('front.news.index') }}" class="arrow-icon">
                     <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
                   </a>
                 </div>
@@ -556,7 +564,7 @@
               </div>
               <div class="news-content">
                 <h3>
-                  <a href="news-details.html"
+                  <a href="{{ route('front.news.index') }}"
                     >Luxury Cars Economy Cars Which is Right for You</a
                   >
                 </h3>
@@ -565,8 +573,8 @@
                   your lifestyle.
                 </p>
                 <div class="link-btn-area">
-                  <a href="news-details.html" class="link">{{ $settings['read_more'] }}</a>
-                  <a href="news-details.html" class="arrow-icon">
+                  <a href="{{ route('front.news.index') }}" class="link">{{ $settings['read_more'] }}</a>
+                  <a href="{{ route('front.news.index') }}" class="arrow-icon">
                     <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
                   </a>
                 </div>
@@ -583,7 +591,7 @@
               </div>
               <div class="news-content">
                 <h3>
-                  <a href="news-details.html"
+                  <a href="{{ route('front.news.index') }}"
                     >Understanding Car Financing: What You Need to Know</a
                   >
                 </h3>
@@ -592,8 +600,8 @@
                   your lifestyle.
                 </p>
                 <div class="link-btn-area">
-                  <a href="news-details.html" class="link">{{ $settings['read_more'] }}</a>
-                  <a href="news-details.html" class="arrow-icon">
+                  <a href="{{ route('front.news.index') }}" class="link">{{ $settings['read_more'] }}</a>
+                  <a href="{{ route('front.news.index') }}" class="arrow-icon">
                     <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
                   </a>
                 </div>

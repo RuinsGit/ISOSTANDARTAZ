@@ -35,7 +35,7 @@ if (!function_exists('nav_trans')) {
         </div>
       </div>
     </div>
-    <div class="col-7 col-md-8">
+    <div class="col-8 col-md-9">
       <div class="navbar-2-right">
         <!-- right -->
         <!-- general menu -->
@@ -93,10 +93,9 @@ if (!function_exists('nav_trans')) {
                   </ul>
                 </li>
                 <li>
-                  <a href="news.html"> {{ isset($header) ? $header->{"blog_" . app()->getLocale()} : nav_trans('blog', 'Blog') }} </a>
+                  <a href="{{ route('front.news.index') }}"> {{ isset($header) ? $header->{"blog" . app()->getLocale()} : nav_trans('blog', 'Haberler') }} </a>
                   <ul class="submenu">
-                    <li><a href="news.html"> {{ isset($header) ? $header->{"blog_" . app()->getLocale()} : nav_trans('blog', 'Blog') }} </a></li>
-                    <li><a href="news-details.html"> {{ isset($header) ? $header->{"blog_details_" . app()->getLocale()} : nav_trans('blog_details', 'Blog Details') }} </a></li>
+                   
                   </ul>
                 </li>
               </ul>

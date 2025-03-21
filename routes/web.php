@@ -25,6 +25,8 @@ use App\Http\Controllers\Admin\AboutCartSectionController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\admin\KeyfiyetController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\BlogTypeController;
 
 
 
@@ -46,6 +48,20 @@ Route::get('/', function () {
 // Front routes
 Route::get('/home', [HomeController::class, 'index'])->name('front.index');
 Route::get('/about', [App\Http\Controllers\Front\AboutController::class, 'index'])->name('front.about');
+
+// Front Blog Routes
+Route::prefix('blog')->name('front.blog.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Front\BlogController::class, 'index'])->name('index');
+    Route::get('/{slug}', [App\Http\Controllers\Front\BlogController::class, 'show'])->name('show');
+    Route::get('/category/{slug}', [App\Http\Controllers\Front\BlogController::class, 'category'])->name('category');
+});
+
+// Front News Routes (News sayfası blog içeriğimizi gösterecek)
+Route::prefix('news')->name('front.news.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Front\NewsController::class, 'index'])->name('index');
+    Route::get('/{slug}', [App\Http\Controllers\Front\NewsController::class, 'show'])->name('show');
+    Route::get('/category/{slug}', [App\Http\Controllers\Front\NewsController::class, 'category'])->name('category');
+});
 
 // Front Product Routes
 Route::prefix('products')->name('front.products.')->group(function () {
@@ -211,10 +227,32 @@ Route::prefix('admin')->group(function () {
             Route::get('keyfiyet/{id}/edit', [KeyfiyetController::class, 'edit'])->name('keyfiyet.edit');
             Route::put('keyfiyet/{id}', [KeyfiyetController::class, 'update'])->name('keyfiyet.update');
             Route::delete('keyfiyet/{id}', [KeyfiyetController::class, 'destroy'])->name('keyfiyet.destroy');
+
+            // Blog Routes
+            Route::get('blogs', [BlogController::class, 'index'])->name('blogs.index');
+            Route::get('blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+            Route::post('blogs', [BlogController::class, 'store'])->name('blogs.store');
+            Route::get('blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+            Route::put('blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+            Route::delete('blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
+            Route::post('blogs/toggle-status/{id}', [BlogController::class, 'toggleStatus'])->name('blogs.toggle-status');
+            
+            // Blog Type Routes
+            Route::get('blog_types', [BlogTypeController::class, 'index'])->name('blog_types.index');
+            Route::get('blog_types/create', [BlogTypeController::class, 'create'])->name('blog_types.create');
+            Route::post('blog_types', [BlogTypeController::class, 'store'])->name('blog_types.store');
+            Route::get('blog_types/{blogType}/edit', [BlogTypeController::class, 'edit'])->name('blog_types.edit');
+            Route::put('blog_types/{blogType}', [BlogTypeController::class, 'update'])->name('blog_types.update');
+            Route::delete('blog_types/{blogType}', [BlogTypeController::class, 'destroy'])->name('blog_types.destroy');
         });
 
         
+
+        
     });
+
+    
+ 
 });
 
 // Dil değiştirme route'u
