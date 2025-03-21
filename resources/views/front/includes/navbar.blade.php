@@ -27,7 +27,7 @@ if (!function_exists('nav_trans')) {
         <div class="navbar-2-logo">
           <a href="{{ url('/') }}">
             @if(isset($logo) && $logo)
-              <img src="{{ asset($logo->logo_2_image) }}" alt="{{ $logo->logo_alt2 }}" title="{{ $logo->logo_title2 }}" class="logo-img" style="height: 60px; width: 100px; object-fit: cover;" />
+              <img src="{{ asset($logo->logo_1_image) }}" alt="{{ $logo->logo_alt1 }}" title="{{ $logo->logo_title1 }}" class="logo-img" style="height: 60px; width: 100px; object-fit: cover;" />
             @else
               <img src="{{ asset('front/assets/img/logo/black-logo.svg') }}" alt="RevAuto" class="logo-img" style="height: 60px; width: 100px; object-fit: cover;" />
             @endif
