@@ -38,7 +38,8 @@ class ProductController extends Controller
         'our_blog' => 'Blog',
         'our_shop' => 'Mağazamız',
         'contact_we' => 'İletişim',
-        'all_rights_reserved' => 'Tüm hakları saklıdır.'
+        'all_rights_reserved' => 'Tüm hakları saklıdır.',
+        'number_footer' => '+90 123 456 7890'
     ];
 
     public function index()

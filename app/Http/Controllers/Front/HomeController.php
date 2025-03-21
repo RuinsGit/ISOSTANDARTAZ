@@ -73,7 +73,8 @@ class HomeController extends Controller
             'services' => 'Hizmetler',
             'our_shop' => 'Mağazamız',
             'contact_we' => 'İletişim',
-            'all_rights_reserved' => 'Tüm hakları saklıdır.'
+            'all_rights_reserved' => 'Tüm hakları saklıdır.',
+            'number_footer' => '+90 123 456 7890'
         ];
 
         $settings = array_merge($defaultSettings, $settings);

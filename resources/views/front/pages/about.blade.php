@@ -1,6 +1,6 @@
 @extends('front.layouts.master')
 
-@section('title', $settings['about_us'])
+@section('title', isset($settings['about_us']) ? $settings['about_us'] : 'Hakkımızda')
 
 @section('content')
 
@@ -147,16 +147,16 @@
       <div class="container">
         <div class="page-heading">
           <div class="breadcrumb-sub-title">
-            <h1 class="wow fadeInUp" data-wow-delay=".3s">ABOUT US</h1>
+            <h1 class="wow fadeInUp" data-wow-delay=".3s">{{ isset($settings['about_us']) ? $settings['about_us'] : 'Hakkımızda' }}</h1>
           </div>
           <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
             <li>
-              <a href="index.html"> Home </a>
+              <a href="{{ route('front.index') }}"> {{ nav_trans('home', 'Ana Sayfa') }} </a>
             </li>
             <li>
               <i class="fa-regular fa-chevrons-right"></i>
             </li>
-            <li>About Us</li>
+            <li>{{ isset($settings['about_us']) ? $settings['about_us'] : 'Hakkımızda' }}</li>
           </ul>
         </div>
       </div>
@@ -169,9 +169,9 @@
     <section class="team-section fix section-padding">
       <div class="container">
         <div class="section-title text-center">
-          <h6 class="wow fadeInUp">Meet Our Team</h6>
+          <h6 class="wow fadeInUp">{{ isset($settings['team']) ? $settings['team'] : 'Ekibimiz' }}</h6>
           <h2 class="wow fadeInUp" data-wow-delay=".3s">
-            Experts in Car Sales
+            {{ isset($settings['car_sales_experts']) ? $settings['car_sales_experts'] : 'Otomobil Satış Uzmanları' }}
           </h2>
         </div>
         <div class="swiper team-slider">
@@ -283,7 +283,7 @@
           class="section-title text-center wow fadeInUp"
           data-wow-delay=".3s"
         >
-          <h2>Our Brand</h2>
+          <h2>{{ isset($settings['our_brands']) ? $settings['our_brands'] : 'Markalarımız' }}</h2>
         </div>
         <div class="brand-wrapper">
           <div class="swiper brand-slider">

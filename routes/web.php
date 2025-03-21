@@ -45,7 +45,7 @@ Route::get('/', function () {
 
 // Front routes
 Route::get('/home', [HomeController::class, 'index'])->name('front.index');
-Route::get('/about', [HomeController::class, 'about'])->name('front.about');
+Route::get('/about', [App\Http\Controllers\Front\AboutController::class, 'index'])->name('front.about');
 
 // Front Product Routes
 Route::prefix('products')->name('front.products.')->group(function () {
