@@ -27,6 +27,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\admin\KeyfiyetController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogTypeController;
+use App\Http\Controllers\Admin\TeamController;
 
 
 
@@ -244,6 +245,20 @@ Route::prefix('admin')->group(function () {
             Route::get('blog_types/{blogType}/edit', [BlogTypeController::class, 'edit'])->name('blog_types.edit');
             Route::put('blog_types/{blogType}', [BlogTypeController::class, 'update'])->name('blog_types.update');
             Route::delete('blog_types/{blogType}', [BlogTypeController::class, 'destroy'])->name('blog_types.destroy');
+
+
+            Route::prefix('teams')->group(function () {
+                Route::get('/', [TeamController::class, 'index'])->name('teams.index');
+                Route::get('/create', [TeamController::class, 'create'])->name('teams.create');
+                Route::post('/', [TeamController::class, 'store'])->name('teams.store');
+                Route::get('/{team}/edit', [TeamController::class, 'edit'])->name('teams.edit');
+                Route::put('/{team}', [TeamController::class, 'update'])->name('teams.update');
+                Route::delete('/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
+                Route::post('/toggle-status/{id}', [TeamController::class, 'toggleStatus'])->name('teams.toggle-status');
+            });
+
+
+
         });
 
         

@@ -176,98 +176,78 @@
         </div>
         <div class="swiper team-slider">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="team-box-items">
-                <div class="team-image">
-                  <img src="{{ asset('front/assets/img/team/01.jpg') }}" alt="img" />
-                </div>
-                <div class="team-content">
-                  <div class="team-info">
-                    <h3>Savannah Nguyen</h3>
-                    <span>Marketing Manager</span>
-                  </div>
-                  <p>
-                    With over 10 years of experience in the automotive industry,
-                    John is passionate about helping customers find their
-                    perfect vehicle.
-                  </p>
-                  <div class="social-icon d-flex align-items-center">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="team-box-items">
-                <div class="team-image">
-                  <img src="{{ asset('front/assets/img/team/02.jpg') }}" alt="img" />
-                </div>
-                <div class="team-content">
-                  <div class="team-info">
-                    <h3>Darrell Steward</h3>
-                    <span>Customer Support </span>
-                  </div>
-                  <p>
-                    With over 10 years of experience in the automotive industry,
-                    John is passionate about helping customers find their
-                    perfect vehicle.
-                  </p>
-                  <div class="social-icon d-flex align-items-center">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            @if(isset($teams) && $teams->count() > 0)
+              @foreach($teams as $team)
+                <div class="swiper-slide">
+                  <div class="team-box-items">
+                    <div class="team-image">
+                      <img src="{{ asset('storage/'.$team->image_path) }}" alt="{{ $team->name }}" />
+                    </div>
+                    <div class="team-content">
+                      <div class="team-info">
+                        <h3>{{ $team->name }}</h3>
+                        <span>{{ $team->position }}</span>
+                      </div>
+                      <p>
+                        {{ $team->description ?? 'Ekip üyemiz hakkında bilgi bulunmamaktadır.' }}
+                      </p>
+                      <div class="social-icon d-flex align-items-center">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="team-box-items">
-                <div class="team-image">
-                  <img src="{{ asset('front/assets/img/team/01.jpg') }}" alt="img" />
-                </div>
-                <div class="team-content">
-                  <div class="team-info">
-                    <h3>Savannah Nguyen</h3>
-                    <span>Marketing Manager</span>
+              @endforeach
+            @else
+              <div class="swiper-slide">
+                <div class="team-box-items">
+                  <div class="team-image">
+                    <img src="{{ asset('front/assets/img/team/01.jpg') }}" alt="img" />
                   </div>
-                  <p>
-                    With over 10 years of experience in the automotive industry,
-                    John is passionate about helping customers find their
-                    perfect vehicle.
-                  </p>
-                  <div class="social-icon d-flex align-items-center">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  <div class="team-content">
+                    <div class="team-info">
+                      <h3>Savannah Nguyen</h3>
+                      <span>Marketing Manager</span>
+                    </div>
+                    <p>
+                      With over 10 years of experience in the automotive industry,
+                      John is passionate about helping customers find their
+                      perfect vehicle.
+                    </p>
+                    <div class="social-icon d-flex align-items-center">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="team-box-items">
-                <div class="team-image">
-                  <img src="{{ asset('front/assets/img/team/02.jpg') }}" alt="img" />
-                </div>
-                <div class="team-content">
-                  <div class="team-info">
-                    <h3>Darrell Steward</h3>
-                    <span>Customer Support </span>
+              <div class="swiper-slide">
+                <div class="team-box-items">
+                  <div class="team-image">
+                    <img src="{{ asset('front/assets/img/team/02.jpg') }}" alt="img" />
                   </div>
-                  <p>
-                    With over 10 years of experience in the automotive industry,
-                    John is passionate about helping customers find their
-                    perfect vehicle.
-                  </p>
-                  <div class="social-icon d-flex align-items-center">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  <div class="team-content">
+                    <div class="team-info">
+                      <h3>Darrell Steward</h3>
+                      <span>Customer Support </span>
+                    </div>
+                    <p>
+                      With over 10 years of experience in the automotive industry,
+                      John is passionate about helping customers find their
+                      perfect vehicle.
+                    </p>
+                    <div class="social-icon d-flex align-items-center">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            @endif
           </div>
           <div class="swiper-dot-2 text-center pt-5">
             <div class="dots"></div>
@@ -288,36 +268,49 @@
         <div class="brand-wrapper">
           <div class="swiper brand-slider">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/01.png') }}" alt="img" />
+              @if(isset($partners) && $partners->count() > 0)
+                @foreach($partners as $partner)
+                  <div class="swiper-slide">
+                    <div class="brand-image">
+                      <img src="{{ asset($partner->image) }}" alt="{{ $partner->title }}" />
+                      @if($partner->title)
+                        <div class="brand-title">{{ $partner->title }}</div>
+                      @endif
+                    </div>
+                  </div>
+                @endforeach
+              @else
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/01.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/02.png') }}" alt="img" />
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/02.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/03.png') }}" alt="img" />
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/03.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/04.png') }}" alt="img" />
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/04.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/05.png') }}" alt="img" />
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/05.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="brand-image">
-                  <img src="{{ asset('front/assets/img/brand/06.png') }}" alt="img" />
+                <div class="swiper-slide">
+                  <div class="brand-image">
+                    <img src="{{ asset('front/assets/img/brand/06.png') }}" alt="img" />
+                  </div>
                 </div>
-              </div>
+              @endif
             </div>
           </div>
         </div>
@@ -337,3 +330,46 @@
 
 
 @endsection
+
+@push('css')
+<style>
+  .brand-image {
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .brand-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+  }
+  
+  .brand-image:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+  
+  .brand-title {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .brand-image:hover .brand-title {
+    color: #ff4747;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+@endpush

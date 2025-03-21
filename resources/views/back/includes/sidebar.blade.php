@@ -231,6 +231,13 @@
                         </li>
 
                         <li>
+                        <a href="{{ route('back.pages.teams.index') }}">
+                            <i class="ri-team-line"></i>
+                            <span>Komandamız</span>
+                        </a>
+                    </li>
+
+                        <li>
                             <a href="{{ route('back.pages.about-cart-sections.index') }}" style="color: white;">
                                 <i class="ri-folder-line" style="color: white;"></i>
                                 <span>Haqqımızda Kart</span>

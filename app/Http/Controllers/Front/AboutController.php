@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TranslationManage;
 use App\Models\About;
+use App\Models\Partner;
+use App\Models\Team;
 
 class AboutController extends Controller
 {
@@ -55,6 +57,12 @@ class AboutController extends Controller
 
         // About verilerini getir
         $about = About::first();
+        
+        // Partner verilerini getir
+        $partners = Partner::active()->ordered()->get();
+        
+        // Ekip üyelerini getir
+        $teams = Team::where('status', 1)->orderBy('position_az')->get();
 
         $route_name = 'front.about';
         $locale = app()->getLocale();
@@ -64,7 +72,9 @@ class AboutController extends Controller
             'about',
             'route_name', 
             'locale',
-            'translations'
+            'translations',
+            'partners',
+            'teams'
         ));
     }
 } 
