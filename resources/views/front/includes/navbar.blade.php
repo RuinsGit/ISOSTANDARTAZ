@@ -63,12 +63,16 @@ if (!function_exists('nav_trans')) {
                   <a href="{{ route('front.about') }}"> {{ isset($header) ? $header->{"about_" . app()->getLocale()} : nav_trans('about', 'About') }} </a>
                 </li>
                 <li>
-                  <a href="service-details.html"> {{ isset($header) ? $header->{"services_" . app()->getLocale()} : nav_trans('services', 'Services') }} </a>
+                  <a href="{{ route('front.service') }}"> {{ isset($header) ? $header->{"services_" . app()->getLocale()} : nav_trans('services', 'Services') }} </a>
                   <ul class="submenu">
-                    <li><a href="service.html"> {{ isset($header) ? $header->{"services_" . app()->getLocale()} : nav_trans('services', 'Services') }} </a></li>
-                    <li>
-                      <a href="service-details.html"> {{ isset($header) ? $header->{"service_details_" . app()->getLocale()} : nav_trans('service_details', 'Service Details') }} </a>
-                    </li>
+                    <li><a href="{{ route('front.service') }}"> {{ isset($header) ? $header->{"services_" . app()->getLocale()} : nav_trans('services', 'Services') }} </a></li>
+                    @if(isset($allServices) && $allServices->count() > 0)
+                      @foreach($allServices->take(5) as $serviceItem)
+                        <li>
+                          <a href="{{ route('front.service.show', $serviceItem->id) }}">{{ $serviceItem->{'title1_' . app()->getLocale()} }}</a>
+                        </li>
+                      @endforeach
+                    @endif
                   </ul>
                 </li>
                 <li class="has-dropdown">
@@ -81,7 +85,7 @@ if (!function_exists('nav_trans')) {
 
 
 
-                    <li><a href="contact.html"> {{ isset($header) ? $header->{"contact_us_" . app()->getLocale()} : nav_trans('contact_us', 'Contact Us') }} </a></li>
+                    <li><a href="{{ route('front.contact') }}"> {{ isset($header) ? $header->{"contact_us_" . app()->getLocale()} : nav_trans('contact_us', 'Contact Us') }} </a></li>
 
                   </ul>
                 </li>

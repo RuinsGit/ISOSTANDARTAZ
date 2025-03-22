@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\BlogType;
 use App\Models\TranslationManage;
+use App\Models\Service;
 
 class BlogController extends Controller
 {
@@ -56,6 +57,7 @@ class BlogController extends Controller
         $blogs = Blog::where('status', 1)->latest()->paginate(6);
         $popularBlogs = Blog::where('status', 1)->where('is_popular', 1)->latest()->take(3)->get();
         $blogTypes = BlogType::where('status', 1)->get();
+        $allServices = Service::all();
 
         $route_name = 'front.blog.index';
         $locale = app()->getLocale();
@@ -67,7 +69,8 @@ class BlogController extends Controller
             'settings',
             'translations',
             'route_name',
-            'locale'
+            'locale',
+            'allServices'
         ));
     }
 
@@ -102,6 +105,7 @@ class BlogController extends Controller
             ->get();
 
         $blogTypes = BlogType::where('status', 1)->get();
+        $allServices = Service::all();
 
         $route_name = 'front.blog.show';
         $locale = app()->getLocale();
@@ -114,7 +118,8 @@ class BlogController extends Controller
             'settings',
             'translations',
             'route_name',
-            'locale'
+            'locale',
+            'allServices'
         ));
     }
 
@@ -137,6 +142,7 @@ class BlogController extends Controller
 
         $popularBlogs = Blog::where('status', 1)->where('is_popular', 1)->latest()->take(3)->get();
         $blogTypes = BlogType::where('status', 1)->get();
+        $allServices = Service::all();
 
         $route_name = 'front.blog.category';
         $locale = app()->getLocale();
@@ -149,7 +155,8 @@ class BlogController extends Controller
             'settings',
             'translations',
             'route_name',
-            'locale'
+            'locale',
+            'allServices'
         ));
     }
 } 

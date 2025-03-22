@@ -245,8 +245,28 @@
                         </li>
                     </ul>
                 </li>
-                
 
+                    
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect" style="background: #111; border-left: 3px solid #fff;">
+                        <i class="ri-folder-line" style="color: white;"></i>
+                        <span style="color: white;">Xidmətlərimiz</span>
+                    </a>
+                    
+                    <ul class="sub-menu" style="background: #111; border-left: 3px solid #fff;">
+                       
+                        <li>
+                            <a href="{{ route('back.pages.service.index') }}" style="color: white;">
+                                <i class="ri-folder-line" style="color: white;"></i>
+                                <span>Xidmətlərimiz</span>
+                            </a>
+                        </li>
+            
+                    </ul>
+                </li>
+
+                
+                
 
             </ul>
         </div>

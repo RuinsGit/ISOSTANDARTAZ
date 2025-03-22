@@ -527,6 +527,38 @@
           ></a>
         </div>
         <div class="row">
+          @php
+            $latestBlogs = App\Models\Blog::where('status', 1)->latest()->take(3)->get();
+          @endphp
+          
+          @forelse($latestBlogs as $index => $blog)
+          <div
+            class="col-xl-4 col-lg-6 col-md-6 img-custom-anim-top wow"
+            data-wow-delay=".{{ ($index * 2) + 3 }}s"
+          >
+            <div class="news-box-items">
+              <div class="news-image">
+                <img src="{{ asset($blog->image ?? 'front/assets/img/news/0'.($index+1).'.jpg') }}" alt="{{ $blog->{'title_' . app()->getLocale()} ?? 'Blog Başlığı' }}" />
+              </div>
+              <div class="news-content">
+                <h3>
+                  <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}">
+                    {{ $blog->{'title_' . app()->getLocale()} ?? 'Blog Başlığı' }}
+                  </a>
+                </h3>
+                <p>
+                  {{ \Illuminate\Support\Str::limit(strip_tags($blog->{'text_' . app()->getLocale()} ?? ''), 100) }}
+                </p>
+                <div class="link-btn-area">
+                  <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}" class="link">{{ $settings['read_more'] }}</a>
+                  <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}" class="arrow-icon">
+                    <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          @empty
           <div
             class="col-xl-4 col-lg-6 col-md-6 img-custom-anim-top wow"
             data-wow-delay=".3s"
@@ -608,6 +640,7 @@
               </div>
             </div>
           </div>
+          @endforelse
         </div>
       </div>
     </section>

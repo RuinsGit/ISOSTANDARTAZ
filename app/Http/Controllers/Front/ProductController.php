@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\TranslationManage;
 use Illuminate\Support\Facades\Session;
+use App\Models\Service;
 
 class ProductController extends Controller
 {
@@ -61,7 +62,9 @@ class ProductController extends Controller
             ->limit(4)
             ->get();
 
-        return view('front.pages.Product', compact('products', 'suggestedProducts', 'settings', 'translations'));
+        $allServices = Service::all();
+
+        return view('front.pages.Product', compact('products', 'suggestedProducts', 'settings', 'translations', 'allServices'));
     }
 
     public function show($slug)
@@ -84,7 +87,9 @@ class ProductController extends Controller
             ->limit(4)
             ->get();
 
-        return view('front.pages.product-details', compact('product', 'suggestedProducts', 'settings', 'translations'));
+        $allServices = Service::all();
+
+        return view('front.pages.product-details', compact('product', 'suggestedProducts', 'settings', 'translations', 'allServices'));
     }
 
     public function cart()
@@ -95,7 +100,9 @@ class ProductController extends Controller
             $settings[$translation->key] = $translation->{'value_' . app()->getLocale()};
         }
         
-        return view('front.pages.cart', compact('settings'));
+        $allServices = Service::all();
+
+        return view('front.pages.cart', compact('settings', 'allServices'));
     }
 
     public function wishlist()
@@ -112,7 +119,9 @@ class ProductController extends Controller
             ->with(['images', 'categories'])
             ->get();
 
-        return view('front.pages.wishlist', compact('products', 'settings', 'translations'));
+        $allServices = Service::all();
+
+        return view('front.pages.wishlist', compact('products', 'settings', 'translations', 'allServices'));
     }
 
     public function addToCart(Request $request)

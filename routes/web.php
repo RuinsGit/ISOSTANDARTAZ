@@ -28,6 +28,7 @@ use App\Http\Controllers\admin\KeyfiyetController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogTypeController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\ServiceController;
 
 
 
@@ -49,6 +50,10 @@ Route::get('/', function () {
 // Front routes
 Route::get('/home', [HomeController::class, 'index'])->name('front.index');
 Route::get('/about', [App\Http\Controllers\Front\AboutController::class, 'index'])->name('front.about');
+Route::get('/service', [App\Http\Controllers\Front\ServiceController::class, 'index'])->name('front.service');
+Route::get('/service/{id}', [App\Http\Controllers\Front\ServiceController::class, 'show'])->name('front.service.show');
+Route::get('/contact', [App\Http\Controllers\Front\HomeController::class, 'contact'])->name('front.contact');
+Route::post('/contact/store-message', [App\Http\Controllers\Front\HomeController::class, 'storeMessage'])->name('front.storeMessage');
 
 // Front Blog Routes
 Route::prefix('blog')->name('front.blog.')->group(function () {
@@ -256,6 +261,15 @@ Route::prefix('admin')->group(function () {
                 Route::delete('/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
                 Route::post('/toggle-status/{id}', [TeamController::class, 'toggleStatus'])->name('teams.toggle-status');
             });
+
+
+            // Service Routes
+            Route::get('service', [ServiceController::class, 'index'])->name('service.index');
+            Route::get('service/create', [ServiceController::class, 'create'])->name('service.create');
+            Route::post('service', [ServiceController::class, 'store'])->name('service.store');
+            Route::get('service/{id}/edit', [ServiceController::class, 'edit'])->name('service.edit');
+            Route::put('service/{id}', [ServiceController::class, 'update'])->name('service.update');
+            Route::delete('service/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
 
 
