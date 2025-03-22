@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogTypeController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ServiceController;
-
+use App\Http\Controllers\Admin\ProjectController;
 
 
 /*
@@ -54,6 +54,12 @@ Route::get('/service', [App\Http\Controllers\Front\ServiceController::class, 'in
 Route::get('/service/{id}', [App\Http\Controllers\Front\ServiceController::class, 'show'])->name('front.service.show');
 Route::get('/contact', [App\Http\Controllers\Front\HomeController::class, 'contact'])->name('front.contact');
 Route::post('/contact/store-message', [App\Http\Controllers\Front\HomeController::class, 'storeMessage'])->name('front.storeMessage');
+
+// Proje Routeları
+Route::prefix('project')->name('front.project.')->group(function () {
+    Route::get('/', [App\Http\Controllers\Front\ProjectController::class, 'index'])->name('index');
+    Route::get('/{slug}', [App\Http\Controllers\Front\ProjectController::class, 'show'])->name('show');
+});
 
 // Front Blog Routes
 Route::prefix('blog')->name('front.blog.')->group(function () {
@@ -271,7 +277,8 @@ Route::prefix('admin')->group(function () {
             Route::put('service/{id}', [ServiceController::class, 'update'])->name('service.update');
             Route::delete('service/{id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
-
+            Route::resource('project', ProjectController::class);
+            Route::post('project/{project}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('project.toggle-status');
 
         });
 

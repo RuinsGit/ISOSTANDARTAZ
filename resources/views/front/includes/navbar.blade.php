@@ -79,11 +79,11 @@ if (!function_exists('nav_trans')) {
                   <a href="news.html"> {{ isset($header) ? $header->{"pages_" . app()->getLocale()} : nav_trans('pages', 'Pages') }} </a>
                   <ul class="submenu">
                     <li class="has-dropdown">
-                      <a href="project-details.html"> {{ isset($header) ? $header->{"portfolio_" . app()->getLocale()} : nav_trans('portfolio', 'Portfolio') }} </a>
-
+                      <a href="{{ route('front.project.index') }}"> {{ isset($header) ? $header->{"portfolio_" . app()->getLocale()} : nav_trans('portfolio', 'Portfolio') }} </a>
+                      <ul class="submenu">
+                        <li><a href="{{ route('front.project.index') }}"> {{ isset($header) ? $header->{"portfolio_" . app()->getLocale()} : nav_trans('portfolio', 'Projeler') }} </a></li>
+                      </ul>
                     </li>
-
-
 
                     <li><a href="{{ route('front.contact') }}"> {{ isset($header) ? $header->{"contact_us_" . app()->getLocale()} : nav_trans('contact_us', 'Contact Us') }} </a></li>
 

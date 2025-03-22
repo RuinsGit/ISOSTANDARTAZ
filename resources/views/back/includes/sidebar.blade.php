@@ -261,6 +261,12 @@
                                 <span>Xidmətlərimiz</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('back.pages.project.index') }}" style="color: white;">
+                                <i class="ri-folder-line" style="color: white;"></i>
+                                <span>Layihələrimiz</span>
+                            </a>
+                        </li>
             
                     </ul>
                 </li>
