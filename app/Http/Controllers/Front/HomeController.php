@@ -9,6 +9,7 @@ use App\Models\HomeFollow;
 use App\Models\Keyfiyet;
 use App\Models\TranslationManage;
 use App\Models\ContactMessage;
+use App\Models\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -154,30 +155,28 @@ class HomeController extends Controller
     {
         try {
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'phone' => 'required|string|max:20',
-                'message' => 'required|string',
+                'website' => 'nullable|string|max:255',
+                'comment' => 'required|string',
             ]);
 
             DB::beginTransaction();
             
-            $contactMessage = ContactMessage::create([
-                'name' => $validated['name'],
+            $contactRequest = ContactRequest::create([
                 'email' => $validated['email'],
-                'phone' => $validated['phone'],
-                'message' => $validated['message'],
+                'website' => $validated['website'] ?? null,
+                'comment' => $validated['comment'],
                 'status' => false 
             ]);
 
-            Mail::to('museyibli.ruhin@gmail.com')->send(new ContactMail($contactMessage));
+            Mail::to('museyibli.ruhin@gmail.com')->send(new ContactMail($contactRequest));
             
             DB::commit();
 
             return redirect()->back()->with('success', 'Mesajınız uğurla göndərildi!');
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Contact message error: ' . $e->getMessage());
+            Log::error('Contact request error: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Xəta baş verdi, zəhmət olmasa yenidən cəhd edin!')->withInput();
         }
     }
@@ -187,21 +186,25 @@ class HomeController extends Controller
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
         
-        // Header için çevirileri hazırla
-        $header = new \stdClass();
-        foreach ($translations as $translation) {
-            $field = $translation->key . '_' . app()->getLocale();
-            $header->$field = $translation->{'value_' . app()->getLocale()};
-        }
-
         // Settings için çevirileri hazırla
         $settings = [];
         foreach ($translations as $translation) {
             $settings[$translation->key] = $translation->{'value_' . app()->getLocale()};
         }
 
+        // Navbar için gerekli çevirileri içeren header dizisini oluştur
+        $navbarKeys = ['home', 'about', 'services', 'pages', 'portfolio', 'contact_us', 'shop', 'cart', 'blog'];
+        $header = new \stdClass();
+        foreach ($navbarKeys as $key) {
+            $translation = $translations->where('key', $key)->first();
+            if ($translation) {
+                $field = $key . '_' . app()->getLocale();
+                $header->$field = $translation->{'value_' . app()->getLocale()};
+            }
+        }
+
         // Varsayılan değerleri ekle
-        $settings = array_merge([
+        $defaultSettings = [
             'home' => 'Ana Sayfa',
             'about' => 'Hakkımızda',
             'services' => 'Hizmetler',
@@ -218,8 +221,37 @@ class HomeController extends Controller
             'your_phone' => 'Telefon Numaranız',
             'your_message' => 'Mesajınız',
             'send' => 'Gönder',
-            'search' => 'Ara'
-        ], $settings);
+            'get_in_touch' => 'Bizimle İletişime Geçin',
+            'website' => 'Web Siteniz', 
+            'search' => 'Ara',
+            
+            // Footer çevirileri
+            'working_hours' => 'Pazar - Cuma 24/7',
+            'contact_us' => 'Bize Ulaşın',
+            'call_us' => 'Bizi Arayın',
+            'our_projects' => 'Projelerimiz',
+            'location' => 'Konum',
+            'store_location' => 'Mağaza Konumu',
+            'footer_about' => 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+            'pages' => 'Sayfalar',
+            'portfolio' => 'Portfolyo',
+            'our_blog' => 'Blog',
+            'our_shop' => 'Mağazamız',
+            'contact_we' => 'İletişim',
+            'all_rights_reserved' => 'Tüm hakları saklıdır.',
+            'number_footer' => '+90 123 456 7890'
+        ];
+
+        $settings = array_merge($defaultSettings, $settings);
+        
+        // Admin panelinden girilen iletişim bilgilerini al
+        $contactInfo = \App\Models\Contact::first();
+        
+        // İletişim sayfası banner fotoğrafını al
+        $contactPhoto = \App\Models\ContactPhoto::where('status', 1)->first();
+        
+        // İletişim formu için ek veriler
+        $contactData = \App\Models\ContactData::where('status', 1)->first();
         
         // Hizmetleri çek (navbar için)
         $allServices = Service::all();
@@ -233,7 +265,10 @@ class HomeController extends Controller
             'locale', 
             'header',
             'translations',
-            'allServices'
+            'allServices',
+            'contactInfo',
+            'contactPhoto',
+            'contactData'
         ));
     }
 } 

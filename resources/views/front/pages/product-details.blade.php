@@ -3,8 +3,8 @@
 @section('title', isset($product->name) ? $product->name : (isset($settings['products']) ? $settings['products'] : 'Ürün Detayı'))
 
 @section('content')
-
-<div id="preloader" class="preloader">
+  
+    <div id="preloader" class="preloader">
       <div class="animation-preloader">
         <div class="spinner"></div>
         <div class="txt-loading">
@@ -86,7 +86,7 @@
                   @elseif($product->images && count($product->images) > 0)
                   <img id="main-product-image" src="{{ asset($product->images[0]->image_path) }}" alt="{{ $product->images[0]->alt_text ?? $product->name }}" class="img-fluid" />
                   @endif
-                </div>
+                    </div>
                 
                 <!-- Küçük resimler galerisi -->
                 <div class="product-thumbs d-flex flex-wrap">
@@ -103,7 +103,7 @@
                     </div>
                     @endforeach
                   @endif
-                </div>
+                  </div>
               </div>
             </div>
             <div class="col-lg-6">
@@ -189,7 +189,7 @@
                         @else
                           <span class="badge bg-danger">{{ isset($settings['items_notavianable']) ? $settings['items_notavianable'] : 'Ürünler' }}</span>
                         @endif
-                      </div>
+              </div>
                       
                       <!-- Renk Seçimi -->
                       @if($product->colors && $product->colors->where('status', 1)->count() > 0)
@@ -299,15 +299,15 @@
                     <tbody>
                       @if($product->properties && count($product->properties) > 0)
                         @foreach($product->properties as $property)
-                        <tr>
+                      <tr>
                           <td>{{ $property->property_name }}</td>
                           <td>{{ $property->property_value }}</td>
-                        </tr>
+                      </tr>
                         @endforeach
                       @else
-                        <tr>
+                      <tr>
                           <td colspan="2">{{ nav_trans('no_additional_information', 'Ek bilgi bulunmamaktadır.') }}</td>
-                        </tr>
+                      </tr>
                       @endif
                     </tbody>
                   </table>

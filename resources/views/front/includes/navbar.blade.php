@@ -22,7 +22,7 @@ if (!function_exists('nav_trans')) {
 
 <div class="container">
   <div class="row justify-content-between align-items-center">
-    <div class="col-5 col-md-3">
+    <div class="col-4 col-md-2">
       <div class="navbar-2-left">
         <div class="navbar-2-logo">
           <a href="{{ url('/') }}">
@@ -35,7 +35,7 @@ if (!function_exists('nav_trans')) {
         </div>
       </div>
     </div>
-    <div class="col-8 col-md-9">
+    <div class="col-9 col-md-10">
       <div class="navbar-2-right">
         <!-- right -->
         <!-- general menu -->
@@ -76,7 +76,7 @@ if (!function_exists('nav_trans')) {
                   </ul>
                 </li>
                 <li class="has-dropdown">
-                  <a href="news.html"> {{ isset($header) ? $header->{"pages_" . app()->getLocale()} : nav_trans('pages', 'Pages') }} </a>
+                  <a href="{{ route('front.project.index') }}"> {{ isset($header) ? $header->{"pages_" . app()->getLocale()} : nav_trans('pages', 'Pages') }} </a>
                   <ul class="submenu">
                     <li class="has-dropdown">
                       <a href="{{ route('front.project.index') }}"> {{ isset($header) ? $header->{"portfolio_" . app()->getLocale()} : nav_trans('portfolio', 'Portfolio') }} </a>
@@ -93,11 +93,11 @@ if (!function_exists('nav_trans')) {
                   <a href="{{ route('front.products.index') }}"> {{ isset($header) ? $header->{"shop_" . app()->getLocale()} : nav_trans('shop', 'Mağaza') }} </a>
                   <ul class="submenu">
                     <li><a href="{{ route('front.products.index') }}"> {{ isset($header) ? $header->{"shop_" . app()->getLocale()} : nav_trans('shop', 'Mağaza') }} </a></li>
-                    <li><a href="{{ route('front.products.cart') }}"> {{ isset($header) ? $header->{"cart_" . app()->getLocale()} : nav_trans('cart', 'Sepet') }} </a></li>
+                    <li><a href="{{ route('front.products.cart') }}"> {{ isset($header) && isset($header->{"cart_" . app()->getLocale()}) ? $header->{"cart_" . app()->getLocale()} : nav_trans('cart', 'Sepet') }} </a></li>
                   </ul>
                 </li>
                 <li>
-                  <a href="{{ route('front.news.index') }}"> {{ isset($header) ? $header->{"blog" . app()->getLocale()} : nav_trans('blog', 'Haberler') }} </a>
+                  <a href="{{ route('front.news.index') }}"> {{ isset($header) && isset($header->{"blog_" . app()->getLocale()}) ? $header->{"blog_" . app()->getLocale()} : nav_trans('blog', 'Haberler') }} </a>
                   <ul class="submenu">
                    
                   </ul>

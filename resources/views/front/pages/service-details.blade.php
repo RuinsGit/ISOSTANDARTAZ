@@ -5,7 +5,7 @@
 @section('meta_description', isset($service->{'meta_description_' . app()->getLocale()}) ? $service->{'meta_description_' . app()->getLocale()} : '')
 
 @section('content')
-<div id="preloader" class="preloader">
+    <div id="preloader" class="preloader">
       <div class="animation-preloader">
         <div class="spinner"></div>
         <div class="txt-loading">
@@ -48,13 +48,13 @@
     <div class="breadcrumb-wrapper section-bg bg-cover"
          style="background-image: url('{{ asset(isset($service->bottom_image) ? $service->bottom_image : 'front/assets/img/breadcrumb-bg.jpg') }}')">
         <div class="overlay-dark"></div>
-        <div class="container">
-            <div class="page-heading">
-                <div class="breadcrumb-sub-title">
+      <div class="container">
+        <div class="page-heading">
+          <div class="breadcrumb-sub-title">
                     <h1 class="wow fadeInUp" data-wow-delay=".3s">{{ isset($service->{'title1_' . app()->getLocale()}) ? $service->{'title1_' . app()->getLocale()} : (isset($settings['service_details']) ? $settings['service_details'] : 'Hizmet Detayları') }}</h1>
-                </div>
-                <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
-                    <li>
+          </div>
+          <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+            <li>
                         <a href="{{ route('front.index') }}"> {{ nav_trans('home', 'Ana Sayfa') }} </a>
                     </li>
                     <li>
@@ -62,31 +62,31 @@
                     </li>
                     <li>
                         <a href="{{ route('front.service') }}"> {{ isset($settings['services']) ? $settings['services'] : 'Hizmetler' }} </a>
-                    </li>
-                    <li>
-                        <i class="fa-regular fa-chevrons-right"></i>
-                    </li>
+            </li>
+            <li>
+              <i class="fa-regular fa-chevrons-right"></i>
+            </li>
                     <li>{{ isset($service->{'title1_' . app()->getLocale()}) ? $service->{'title1_' . app()->getLocale()} : 'Hizmet Detayı' }}</li>
-                </ul>
-            </div>
+          </ul>
         </div>
+      </div>
     </div>
 
     <!-- Service Details Section Start -->
     <section class="service-details-section fix section-padding">
-        <div class="container">
+      <div class="container">
             <div class="row">
                 <div class="col-xl-8 col-lg-7 mb-md-5 mb-4 mb-xl-0 mb-lg-0">
-                    <div class="service-details-wrapper">
+        <div class="service-details-wrapper">
                         <div class="featured-image mb-5 wow fadeInUp" data-wow-delay=".3s">
                             <img src="{{ asset($service->image) }}" alt="{{ $service->{'image_alt_' . app()->getLocale()} }}" class="img-fluid" />
                             <div class="image-overlay">
                                 <div class="overlay-content">
                                     <h4>{{ isset($service->{'title1_' . app()->getLocale()}) ? $service->{'title1_' . app()->getLocale()} : 'Hizmet Detayı' }}</h4>
-                                </div>
-                            </div>
-                        </div>
-                        
+                      </div>
+                    </div>
+                  </div>
+
                         <div class="service-intro mb-5 wow fadeInUp" data-wow-delay=".4s">
                             <h2>{{ $service->{'title1_' . app()->getLocale()} }}</h2>
                             <div class="service-highlights">
@@ -97,54 +97,54 @@
                                                 <i class="fa-regular fa-check-circle"></i>
                                             </div>
                                             <h5>{{ isset($settings['quality']) ? $settings['quality'] : 'Kalite' }}</h5>
-                                        </div>
-                                    </div>
+                </div>
+              </div>
                                     <div class="col-md-4">
                                         <div class="highlight-item">
                                             <div class="icon">
                                                 <i class="fa-regular fa-clock"></i>
-                                            </div>
+            </div>
                                             <h5>{{ isset($settings['fast_service']) ? $settings['fast_service'] : 'Hızlı Hizmet' }}</h5>
-                                        </div>
-                                    </div>
+                  </div>
+                </div>
                                     <div class="col-md-4">
                                         <div class="highlight-item">
                                             <div class="icon">
                                                 <i class="fa-regular fa-thumbs-up"></i>
-                                            </div>
+                  </div>
                                             <h5>{{ isset($settings['satisfaction']) ? $settings['satisfaction'] : 'Müşteri Memnuniyeti' }}</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
                         
                         <div class="service-content mb-5 wow fadeInUp" data-wow-delay=".5s">
                             <div class="content-block">
                                 {!! $service->{'text1_' . app()->getLocale()} !!}
-                            </div>
-                        </div>
+        </div>
+      </div>
                         
                         <div class="service-features mb-5 wow fadeInUp" data-wow-delay=".6s">
                             <h3>{{ $service->{'title2_' . app()->getLocale()} }}</h3>
-                            <div class="row">
+        <div class="row">
                                 <div class="col-md-12">
                                     <div class="content-block with-icon">
                                         {!! $service->{'text2_' . app()->getLocale()} !!}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              </div>
+              </div>
+            </div>
+          </div>
                         
                         <div class="additional-image mb-5 wow fadeInUp" data-wow-delay=".7s">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="image-wrapper">
                                         <img src="{{ asset($service->bottom_image) }}" alt="{{ $service->{'bottom_image_alt_' . app()->getLocale()} }}" class="img-fluid" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+              </div>
+              </div>
+            </div>
+          </div>
                         
                         <!-- İletişim CTA -->
                         <div class="service-cta mt-5 wow fadeInUp" data-wow-delay=".8s">
@@ -153,16 +153,16 @@
                                     <div class="col-md-8">
                                         <h4>{{ isset($settings['need_more_info']) ? $settings['need_more_info'] : 'Daha fazla bilgiye mi ihtiyacınız var?' }}</h4>
                                         <p>{{ isset($settings['contact_for_more']) ? $settings['contact_for_more'] : 'Bu hizmet hakkında daha detaylı bilgi için bizimle iletişime geçin.' }}</p>
-                                    </div>
+              </div>
                                     <div class="col-md-4 text-md-end mt-3 mt-md-0">
                                         <a href="{{ route('front.contact') }}" class="theme-btn">{{ isset($settings['contact_us']) ? $settings['contact_us'] : 'Bize Ulaşın' }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
                 <div class="col-xl-4 col-lg-5">
                     <div class="service-sidebar">
                         <div class="widget service-widget mb-4 wow fadeInUp" data-wow-delay=".5s">
@@ -179,8 +179,8 @@
                                     @endforeach
                                 @endif
                             </ul>
-                        </div>
-                        
+      </div>
+
                         <div class="widget contact-widget wow fadeInUp" data-wow-delay=".7s">
                             <h3 class="widget-title">{{ isset($settings['need_help']) ? $settings['need_help'] : 'Yardıma mı ihtiyacınız var?' }}</h3>
                             <div class="contact-info">
@@ -204,9 +204,9 @@
                                 </div>
                                 <div class="contact-btn">
                                     <a href="{{ route('front.contact') }}" class="theme-btn">{{ isset($settings['contact_us']) ? $settings['contact_us'] : 'Bize Ulaşın' }}</a>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+              </div>
+            </div>
                         
                         <!-- Hızlı Bilgi Formu Widget -->
                         <div class="widget inquiry-widget wow fadeInUp" data-wow-delay=".9s">
@@ -214,22 +214,22 @@
                             <form action="#" class="quick-contact-form">
                                 <div class="form-group mb-3">
                                     <input type="text" class="form-control" placeholder="{{ isset($settings['your_name']) ? $settings['your_name'] : 'Adınız' }}" required>
-                                </div>
+                </div>
                                 <div class="form-group mb-3">
                                     <input type="email" class="form-control" placeholder="{{ isset($settings['your_email']) ? $settings['your_email'] : 'E-posta Adresiniz' }}" required>
-                                </div>
+              </div>
                                 <div class="form-group mb-3">
                                     <input type="tel" class="form-control" placeholder="{{ isset($settings['your_phone']) ? $settings['your_phone'] : 'Telefon Numaranız' }}">
-                                </div>
+            </div>
                                 <div class="form-group mb-3">
                                     <textarea class="form-control" rows="4" placeholder="{{ isset($settings['your_message']) ? $settings['your_message'] : 'Mesajınız' }}" required></textarea>
-                                </div>
+                </div>
                                 <button type="submit" class="theme-btn w-100">{{ isset($settings['send_inquiry']) ? $settings['send_inquiry'] : 'Gönder' }}</button>
                             </form>
-                        </div>
-                    </div>
-                </div>
+              </div>
+              </div>
             </div>
+          </div>
         </div>
     </section>
 @endsection

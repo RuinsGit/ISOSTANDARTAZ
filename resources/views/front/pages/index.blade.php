@@ -359,7 +359,7 @@
     </section>
 
     <!-- Feature Car Section Start -->
-    <section class="feature-car-section fix section-padding section-bg-black">
+    <!-- <section class="feature-car-section fix section-padding section-bg-black">
       <div class="car-shape float-bob-x">
         <img src="{{ asset('front/assets/img/car-shape.png') }}" alt="img" />
       </div>
@@ -450,7 +450,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Counter Section Start -->
     <section class="counter-section fix section-padding" style="display: flex; justify-content: space-between; align-items: center">

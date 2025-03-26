@@ -191,29 +191,29 @@
         </div>
         @endif
 
-        <div class="row g-4">
+            <div class="row g-4">
           @forelse($blogs as $blog)
           <div class="col-xl-4 col-lg-6 col-md-6 img-custom-anim-top wow fadeInUp" data-wow-delay=".{{ $loop->iteration * 2 }}s">
-            <div class="news-box-items mt-0">
-              <div class="news-image">
+                <div class="news-box-items mt-0">
+                  <div class="news-image">
                 <img src="{{ asset($blog->image ?? 'front/assets/img/news/01.jpg') }}" alt="{{ $blog->{'title_' . app()->getLocale()} ?? 'Haber Başlığı' }}" />
-              </div>
-              <div class="news-content">
-                <h3>
+                  </div>
+                  <div class="news-content">
+                    <h3>
                   <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}">
                     {{ $blog->{'title_' . app()->getLocale()} ?? 'Haber Başlığı' }}
                   </a>
-                </h3>
-                <p>
+                    </h3>
+                    <p>
                   {{ \Illuminate\Support\Str::limit(strip_tags($blog->{'text_' . app()->getLocale()} ?? ''), 100) }}
-                </p>
-                <div class="link-btn-area">
+                    </p>
+                    <div class="link-btn-area">
                   <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}" class="link">
                     {{ isset($settings['read_more']) ? $settings['read_more'] : 'Devamını Oku' }}
                   </a>
                   <a href="{{ route('front.news.show', $blog->{'slug_' . app()->getLocale()} ?? $blog->id) }}" class="arrow-icon">
-                    <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
-                  </a>
+                        <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
+                      </a>
                 </div>
               </div>
             </div>
@@ -223,13 +223,13 @@
             <p>{{ __('Henüz haber gönderisi bulunmamaktadır.') }}</p>
           </div>
           @endforelse
-        </div>
+                  </div>
         
         <!-- Pagination -->
         <div class="page-nav-wrap pt-5 text-center wow fadeInUp" data-wow-delay=".3s">
           {{ $blogs->links() }}
-        </div>
-      </div>
+                    </div>
+                  </div>
     </section>
 
     @if(isset($popularBlogs) && $popularBlogs->count() > 0)
@@ -242,30 +242,30 @@
               {{ isset($settings['popular_posts']) ? $settings['popular_posts'] : 'Popüler Haberler' }}
             </h2>
           </div>
-        </div>
+                  </div>
         <div class="row">
           @foreach($popularBlogs as $popularBlog)
           <div class="col-xl-4 col-lg-4 col-md-6">
             <div class="news-box-items">
-              <div class="news-image">
+                  <div class="news-image">
                 <img src="{{ asset($popularBlog->image ?? 'front/assets/img/news/01.jpg') }}" alt="{{ $popularBlog->{'title_' . app()->getLocale()} ?? 'Haber Başlığı' }}" />
-              </div>
-              <div class="news-content">
-                <h3>
+                  </div>
+                  <div class="news-content">
+                    <h3>
                   <a href="{{ route('front.news.show', $popularBlog->{'slug_' . app()->getLocale()} ?? $popularBlog->id) }}">
                     {{ $popularBlog->{'title_' . app()->getLocale()} ?? 'Haber Başlığı' }}
                   </a>
-                </h3>
-                <p>
+                    </h3>
+                    <p>
                   {{ \Illuminate\Support\Str::limit(strip_tags($popularBlog->{'text_' . app()->getLocale()} ?? ''), 100) }}
-                </p>
-                <div class="link-btn-area">
+                    </p>
+                    <div class="link-btn-area">
                   <a href="{{ route('front.news.show', $popularBlog->{'slug_' . app()->getLocale()} ?? $popularBlog->id) }}" class="link">
                     {{ isset($settings['read_more']) ? $settings['read_more'] : 'Devamını Oku' }}
                   </a>
                   <a href="{{ route('front.news.show', $popularBlog->{'slug_' . app()->getLocale()} ?? $popularBlog->id) }}" class="arrow-icon">
-                    <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
-                  </a>
+                        <i class="fa-sharp fa-regular fa-arrow-up-right"></i>
+                      </a>
                 </div>
               </div>
             </div>

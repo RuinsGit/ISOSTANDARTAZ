@@ -30,6 +30,10 @@ use App\Http\Controllers\Admin\BlogTypeController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ContactRequestController;
+use App\Http\Controllers\Admin\ContactDataController;
+use App\Http\Controllers\Admin\ContactPhotoController;
 
 
 /*
@@ -279,6 +283,46 @@ Route::prefix('admin')->group(function () {
 
             Route::resource('project', ProjectController::class);
             Route::post('project/{project}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('project.toggle-status');
+
+
+             // Contact routes
+             Route::prefix('contact')->group(function () {
+                Route::get('/', [ContactController::class, 'index'])->name('contact.index');
+                Route::get('/create', [ContactController::class, 'create'])->name('contact.create');
+                Route::post('/', [ContactController::class, 'store'])->name('contact.store');
+                Route::get('/{contact}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+                Route::put('/{contact}', [ContactController::class, 'update'])->name('contact.update');
+                Route::delete('/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
+            });
+
+            // Contact Photos routes
+            Route::prefix('contact-photos')->group(function () {
+                Route::get('/', [ContactPhotoController::class, 'index'])->name('contact-photos.index');
+                Route::get('/create', [ContactPhotoController::class, 'create'])->name('contact-photos.create');
+                Route::post('/', [ContactPhotoController::class, 'store'])->name('contact-photos.store');
+                Route::get('/{contactPhoto}/edit', [ContactPhotoController::class, 'edit'])->name('contact-photos.edit');
+                Route::put('/{contactPhoto}', [ContactPhotoController::class, 'update'])->name('contact-photos.update');
+                Route::delete('/{contactPhoto}', [ContactPhotoController::class, 'destroy'])->name('contact-photos.destroy');
+                Route::get('/toggle-status/{id}', [ContactPhotoController::class, 'toggleStatus'])->name('contact-photos.toggle-status');
+            });
+
+            // Contact Requests routes
+            Route::prefix('contact-requests')->group(function () {
+                Route::get('/', [ContactRequestController::class, 'index'])->name('contact-requests.index');
+                Route::get('/{contactRequest}/show', [ContactRequestController::class, 'show'])->name('contact-requests.show');
+                Route::delete('/{contactRequest}', [ContactRequestController::class, 'destroy'])->name('contact-requests.destroy');
+                Route::post('/toggle-status/{id}', [ContactRequestController::class, 'toggleStatus'])->name('contact-requests.toggle-status');
+            });
+
+            Route::prefix('contact-data')->group(function () {
+                Route::get('/', [ContactDataController::class, 'index'])->name('contact-data.index');
+                Route::get('/create', [ContactDataController::class, 'create'])->name('contact-data.create');
+                Route::post('/', [ContactDataController::class, 'store'])->name('contact-data.store');
+                Route::get('/{contactData}/edit', [ContactDataController::class, 'edit'])->name('contact-data.edit');
+                Route::put('/{contactData}', [ContactDataController::class, 'update'])->name('contact-data.update');
+                Route::delete('/{contactData}', [ContactDataController::class, 'destroy'])->name('contact-data.destroy');
+                Route::post('/toggle-status/{id}', [ContactDataController::class, 'toggleStatus'])->name('contact-data.toggle-status');
+            });
 
         });
 

@@ -44,27 +44,27 @@
     <!-- Breadcrumb Section Start -->
     <div class="breadcrumb-wrapper section-bg bg-cover"
          style="background-image: url('{{ asset('front/assets/img/breadcrumb-bg.jpg') }}')">
-        <div class="container">
-            <div class="page-heading">
-                <div class="breadcrumb-sub-title">
+      <div class="container">
+        <div class="page-heading">
+          <div class="breadcrumb-sub-title">
                     <h1 class="wow fadeInUp" data-wow-delay=".3s">{{ isset($settings['products']) ? $settings['products'] : 'Ürünler' }}</h1>
-                </div>
-                <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
-                    <li>
+          </div>
+          <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+            <li>
                         <a href="{{ route('front.index') }}"> {{ nav_trans('home', 'Ana Sayfa') }} </a>
-                    </li>
-                    <li>
-                        <i class="fa-regular fa-chevrons-right"></i>
-                    </li>
+            </li>
+            <li>
+              <i class="fa-regular fa-chevrons-right"></i>
+            </li>
                     <li>{{ isset($settings['products']) ? $settings['products'] : 'Ürünler' }}</li>
-                </ul>
-            </div>
+          </ul>
         </div>
+      </div>
     </div>
 
     <!-- Product Section Start -->
     <section class="products-section fix section-padding">
-        <div class="container">
+      <div class="container">
             <div class="woocommerce-notices-wrapper wow fadeInUp" data-wow-delay=".3s">
                 {{ $products->firstItem() }}-{{ $products->lastItem() }} / {{ $products->total() }} {{ isset($settings['result']) ? $settings['result'] : 'Ürünler' }}</p>
                 <div class="form-clt">
@@ -84,9 +84,9 @@
                     </div>
                     <div class="icon-2 active">
                         <a href="#"><i class="fa-sharp fa-regular fa-grid-2"></i></a>
-                    </div>
+                  </div>
                 </div>
-            </div>
+                    </div>
             <div class="row">
                 @foreach($products as $product)
                 <div class="col-xl-3 col-lg-4 col-md-6">
@@ -97,54 +97,54 @@
                             <div class="post-sale">{{ nav_trans('sale', 'İndirim') }}</div>
                             <div class="post-dis">-{{ round((($product->price - $product->discount_price) / $product->price) * 100) }}%</div>
                             @endif
-                        </div>
+                    </div>
                         <div class="shop-content">
                             <div class="car-titile">
                                 <h4><a href="{{ route('front.products.show', $product->slug) }}">{{ $product->name }}</a></h4>
                                 <p>{{ optional($product->categories)->first() ? optional($product->categories->first())->name : '' }}</p>
-                            </div>
+                  </div>
                             <div class="star">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
-                            </div>
+                </div>
                             <ul class="price-list">
                                 <li>{{ number_format($product->discount_price ?? $product->price, 2) }} ₺</li>
                                 @if($product->discount_price)
                                 <li><s>{{ number_format($product->price, 2) }} ₺</s> <span class="discount-badge-sm">-%{{ round((($product->price - $product->discount_price) / $product->price) * 100) }}</span></li>
                                 @endif
-                            </ul>
+                  </ul>
                             <a href="javascript:void(0)" class="theme-btn add-to-cart {{ ($product->stocks && $product->stocks->sum('quantity') > 0) ? '' : 'disabled' }}" data-id="{{ $product->id }}">
                                 <i class="fa-sharp fa-regular fa-cart-shopping"></i> {{ isset($settings['add_to_cart']) ? $settings['add_to_cart'] : 'Sepete Ekle' }}
-                            </a>
-                        </div>
-                    </div>
+                    </a>
+                  </div>
                 </div>
+              </div>
                 @endforeach
             </div>
             
             <!-- Pagination -->
             <div class="page-nav-wrap pt-5 text-center wow fadeInUp" data-wow-delay=".3s">
                 {{ $products->links() }}
-            </div>
         </div>
+      </div>
     </section>
 
     <!-- Suggested Products Section Start -->
     <section class="car-section fix section-padding section-bg">
-        <div class="container">
-            <div class="section-title-area">
-                <div class="section-title">
-                    <h2 class="wow fadeInUp" data-wow-delay=".3s">
+      <div class="container">
+        <div class="section-title-area">
+          <div class="section-title">
+            <h2 class="wow fadeInUp" data-wow-delay=".3s">
                         {{ isset($settings['suggested_products']) ? $settings['suggested_products'] : 'Önerilen Ürünler' }}
-                    </h2>
-                </div>
-            </div>
+            </h2>
+          </div>
+        </div>
             <div class="row">
                 @foreach($suggestedProducts as $sugProduct)
-                <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="shop-box-items">
                         <div class="shop-image">
                             <img src="{{ asset($sugProduct->main_image ?? 'front/assets/img/shop/01.jpg') }}" alt="{{ $sugProduct->name ?? 'Product Image' }}" />
@@ -152,34 +152,34 @@
                             <div class="post-sale">{{ nav_trans('sale', 'İndirim') }}</div>
                             <div class="post-dis">-{{ round((($sugProduct->price - $sugProduct->discount_price) / $sugProduct->price) * 100) }}%</div>
                             @endif
-                        </div>
+                  </div>
                         <div class="shop-content">
-                            <div class="car-titile">
+                  <div class="car-titile">
                                 <h4><a href="{{ route('front.products.show', $sugProduct->slug) }}">{{ $sugProduct->name }}</a></h4>
                                 <p>{{ optional($sugProduct->categories)->first() ? optional($sugProduct->categories->first())->name : '' }}</p>
-                            </div>
+                  </div>
                             <div class="star">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
-                            </div>
+                  </div>
                             <ul class="price-list">
                                 <li>{{ number_format($sugProduct->discount_price ?? $sugProduct->price, 2) }} ₺</li>
                                 @if($sugProduct->discount_price)
                                 <li><s>{{ number_format($sugProduct->price, 2) }} ₺</s> <span class="discount-badge-sm">-%{{ round((($sugProduct->price - $sugProduct->discount_price) / $sugProduct->price) * 100) }}</span></li>
                                 @endif
-                            </ul>
+                    </ul>
                             <a href="javascript:void(0)" class="theme-btn add-to-cart {{ ($sugProduct->stocks && $sugProduct->stocks->sum('quantity') > 0) ? '' : 'disabled' }}" data-id="{{ $sugProduct->id }}">
                                 <i class="fa-sharp fa-regular fa-cart-shopping"></i> {{ isset($settings['add_to_cart']) ? $settings['add_to_cart'] : 'Sepete Ekle' }}
                             </a>
-                        </div>
                     </div>
+                  </div>
                 </div>
                 @endforeach
-            </div>
         </div>
+      </div>
     </section>
 @endsection
 

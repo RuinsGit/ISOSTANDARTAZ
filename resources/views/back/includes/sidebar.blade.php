@@ -146,23 +146,23 @@
 
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-message-line"></i>
-                        <span>Bloglar</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect" style="background: #111; border-left: 3px solid #fff;">
+                        <i class="ri-message-line" style="color: white;"></i>
+                        <span style="color: white;">Bloglar</span>
                     </a>
 
-                    <ul class="sub-menu" aria-expanded="false">
+                    <ul class="sub-menu" style="background: #111; border-left: 3px solid #fff;">
                         
                         <li>
-                    <a href="{{ route('back.pages.blogs.index') }}" class="waves-effect">
-                        <i class="ri-message-line"></i>
+                    <a href="{{ route('back.pages.blogs.index') }}" style="color: white;">
+                            <i class="ri-message-line" style="color: white;"></i>
                         <span>Bloglar</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('back.pages.blog_types.index') }}" class="waves-effect">
-                        <i class="ri-message-line"></i>
+                    <a href="{{ route('back.pages.blog_types.index') }}" style="color: white;">
+                        <i class="ri-message-line" style="color: white;"></i>
                         <span>Blog Türləri</span>
                     </a>
                 </li>
@@ -245,8 +245,7 @@
                         </li>
                     </ul>
                 </li>
-
-                    
+      
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect" style="background: #111; border-left: 3px solid #fff;">
                         <i class="ri-folder-line" style="color: white;"></i>
@@ -270,6 +269,43 @@
             
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect" style="background: #111; border-left: 3px solid #fff;">
+                        <i class="ri-folder-line" style="color: white;"></i>
+                        <span style="color: white;">Əlaqə</span>
+                    </a>
+                    
+                    <ul class="sub-menu" style="background: #111; border-left: 3px solid #fff;">
+
+                    <li>
+                        <a href="{{ route('back.pages.contact.index') }}" style="color: white;">
+                            <i class="ri-phone-line"></i>
+                            <span>Contact Məlumatları</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="{{ route('back.pages.contact-photos.index') }}" style="color: white;">
+                    <i class="ri-image-line"></i>
+                    <span>Əlaqə Şəkilləri</span>
+                    </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{{ route('back.pages.contact-requests.index') }}" style="color: white;">
+                            <i class="ri-message-line"></i>
+                            <span>Contact Sorğuları</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('back.pages.contact-data.index') }}" style="color: white;">
+                            <i class="ri-phone-line"></i>
+                            <span>Contact Parametrləri</span>
+                        </a>
+                    </li>
+
+              
 
                 
                 

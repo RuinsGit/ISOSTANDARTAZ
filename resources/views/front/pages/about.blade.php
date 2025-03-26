@@ -150,7 +150,7 @@
     <!-- Breadcrumb Section Start -->
     <div
       class="breadcrumb-wrapper section-bg bg-cover"
-      style="background-image: url('{{ asset('front/assets/img/breadcrumb-bg.jpg') }}')"
+      style="background-image: url('{{ asset('front/assets/img/about/about-banner.jpg') }}')"
     >
       <div class="container">
         <div class="page-heading">
