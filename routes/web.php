@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ContactRequestController;
 use App\Http\Controllers\Admin\ContactDataController;
 use App\Http\Controllers\Admin\ContactPhotoController;
+use App\Http\Controllers\Admin\AboutCenterCartController;
 
 
 /*
@@ -323,6 +324,15 @@ Route::prefix('admin')->group(function () {
                 Route::delete('/{contactData}', [ContactDataController::class, 'destroy'])->name('contact-data.destroy');
                 Route::post('/toggle-status/{id}', [ContactDataController::class, 'toggleStatus'])->name('contact-data.toggle-status');
             });
+
+
+             // About Center Cart routes
+             Route::resource('about-center-cart', AboutCenterCartController::class);
+
+            
+             Route::post('about-center-cart/toggle-status/{id}', [AboutCenterCartController::class, 'toggleStatus'])->name('about-center-cart.toggle-status');
+             Route::post('/admin/about-center-cart/upload-image', [AboutCenterCartController::class, 'uploadImage'])->name('about-center-cart.upload-image');
+             
 
         });
 

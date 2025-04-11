@@ -299,14 +299,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay=".3s">
                     <div class="why-choose-image" style="height: 400px; width: 600px;">
-                    <div class="service-image" style="height: 400px; width: 600px;">
-                                    <img src="{{ asset($service->image) }}" alt="{{ $service->{'image_alt_' . app()->getLocale()} }}" class="img-fluid">
-                                    <div class="service-overlay">
-                                        <a href="{{ route('front.service.show', $service->id) }}" class="service-link">
-                                            <i class="fa-regular fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                        <div class="service-image" style="height: 400px; width: 600px;">
+                            <img src="{{ asset('front/assets/img/service/why-choose.jpg') }}" alt="Neden Bizi Seçmelisiniz" class="img-fluid">
+                            <div class="service-overlay">
+                                <a href="{{ route('front.contact') }}" class="service-link">
+                                    <i class="fa-regular fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
                         <div class="why-choose-badge">
                             <div class="icon">
                                 <i class="fa-regular fa-star"></i>
@@ -349,6 +349,7 @@
                                 <div class="icon">
                                     <i class="fa-regular fa-clock"></i>
                                 </div>
+                                <div class="content">
                                     <h5>{{ isset($settings['quick_service']) ? $settings['quick_service'] : 'Hızlı Servis' }}</h5>
                                     <p>{{ isset($settings['quick_service_desc']) ? $settings['quick_service_desc'] : 'Araç bakım ve onarımlarınızı hızlı bir şekilde tamamlıyoruz.' }}</p>
                                 </div>

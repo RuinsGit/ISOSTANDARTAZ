@@ -170,6 +170,65 @@
       </div>
     </div>
 
+    <!-- About Us Section Start -->
+    <section class="about-us-section section-padding">
+      <div class="container">
+        <div class="row align-items-center">
+          @if(isset($aboutCenterCart))
+            <div class="col-lg-6 mb-5 mb-lg-0 wow fadeInLeft" data-wow-delay=".3s">
+              <div class="about-image">
+                @php
+                  $locale = app()->getLocale();
+                  $title = $aboutCenterCart->{"title_" . ($locale == 'tr' ? 'az' : $locale)};
+                  $description = $aboutCenterCart->{"description_" . ($locale == 'tr' ? 'az' : $locale)};
+                @endphp
+                <img src="{{ asset($aboutCenterCart->image) }}" alt="{{ $title }}" class="img-fluid rounded" onerror="this.src='{{ asset('front/assets/img/about/about-image.jpg') }}'">
+              </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
+              <div class="section-title mb-4">
+                <h6>{{ isset($settings['about_us']) ? $settings['about_us'] : 'Hakkımızda' }}</h6>
+                <h2>{{ $title }}</h2>
+              </div>
+              <div class="about-content">
+                <div class="description">
+                  {!! $description !!}
+                </div>
+                <div class="about-btn mt-4">
+                  <a href="{{ route('front.contact') }}" class="theme-btn">{{ isset($settings['contact_us']) ? $settings['contact_us'] : 'Bize Ulaşın' }}</a>
+                </div>
+              </div>
+            </div>
+          @else
+            <div class="col-lg-6 mb-5 mb-lg-0 wow fadeInLeft" data-wow-delay=".3s">
+              <div class="about-image">
+                <img src="{{ asset('front/assets/img/about/about-image.jpg') }}" alt="Şirketimiz Hakkında" class="img-fluid rounded">
+              </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
+              <div class="section-title mb-4">
+                <h6>{{ isset($settings['about_us']) ? $settings['about_us'] : 'Hakkımızda' }}</h6>
+                <h2>{{ isset($settings['about_title']) ? $settings['about_title'] : 'Otomobil Dünyasında Güvenilir Çözüm Ortağınız' }}</h2>
+              </div>
+              <div class="about-content">
+                <div class="description">
+                  <p>
+                    {{ isset($settings['about_description']) ? $settings['about_description'] : 'Şirketimiz, otomobil satış ve servis alanında 20 yılı aşkın deneyime sahip uzman kadrosuyla müşterilerine en iyi hizmeti sunmayı hedeflemektedir. Müşteri memnuniyetini her zaman ön planda tutarak, satış öncesi ve sonrası destek ile fark yaratıyoruz.' }}
+                  </p>
+                  <p>
+                    {{ isset($settings['about_description_2']) ? $settings['about_description_2'] : 'Geniş araç portföyümüz, profesyonel ekibimiz ve müşteri odaklı yaklaşımımızla otomotiv sektöründe güvenilir bir marka olmaktan gurur duyuyoruz.' }}
+                  </p>
+                </div>
+                <div class="about-btn mt-4">
+                  <a href="{{ route('front.contact') }}" class="theme-btn">{{ isset($settings['contact_us']) ? $settings['contact_us'] : 'Bize Ulaşın' }}</a>
+                </div>
+              </div>
+            </div>
+          @endif
+        </div>
+      </div>
+    </section>
+
     <!-- Counter Section Start -->
 
 
@@ -378,6 +437,77 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  /* Hakkımızda Bölümü Stilleri */
+  .about-us-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-image img {
+    width: 100%;
+    transition: transform 0.8s ease;
+  }
+
+  .about-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .about-content .description {
+    margin-bottom: 25px;
+    line-height: 1.8;
+    color: #555;
+  }
+
+  .about-content .description p {
+    margin-bottom: 15px;
+  }
+
+  .section-title h6 {
+    color: #ff4747;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .section-title h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #222;
+  }
+
+  .theme-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #ff4747;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #ff4747;
+    text-decoration: none;
+  }
+
+  .theme-btn:hover {
+    background-color: transparent;
+    color: #ff4747;
+  }
+
+  @media (max-width: 991px) {
+    .section-title h2 {
+      font-size: 28px;
+    }
   }
 </style>
 @endpush

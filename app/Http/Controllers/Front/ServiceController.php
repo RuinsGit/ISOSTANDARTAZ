@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TranslationManage;
 use App\Models\Service;
+use App\Models\Socialfooter;
+use App\Models\Socialshare;
+use App\Models\Contact;
 
 class ServiceController extends Controller
 {
@@ -14,6 +17,13 @@ class ServiceController extends Controller
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
         
+        // Header için çevirileri hazırla
+        $header = new \stdClass();
+        foreach ($translations as $translation) {
+            $field = $translation->key . '_' . app()->getLocale();
+            $header->$field = $translation->{'value_' . app()->getLocale()};
+        }
+
         // Settings için çevirileri hazırla
         $settings = [];
         foreach ($translations as $translation) {
@@ -24,17 +34,11 @@ class ServiceController extends Controller
         $defaultSettings = [
             'home' => 'Ana Sayfa',
             'about' => 'Hakkımızda',
-            'about_us' => 'Hakkımızda',
             'services' => 'Hizmetler',
-            'service' => 'Hizmet',
-            'service_details' => 'Hizmet Detayları',
             'products' => 'Ürünler',
             'blog' => 'Blog',
             'contact' => 'İletişim',
             'search' => 'Ara',
-            'what_we_do' => 'Ne Yapıyoruz',
-            'services_we_offer' => 'Sunduğumuz Hizmetler',
-            'read_more' => 'Devamını Oku',
             
             // Footer çevirileri
             'contact_us' => 'Bize Ulaşın',
@@ -54,19 +58,33 @@ class ServiceController extends Controller
         ];
 
         $settings = array_merge($defaultSettings, $settings);
-
-        // Service verilerini getir
-        $services = Service::all();
+        
+        $services = Service::latest()->get();
+        $allServices = Service::all();
+        
+        // Footer sosyal medya ikonları
+        $socialfooters = Socialfooter::orderBy('order')->get();
+        
+        // Sosyal paylaşım ikonları
+        $socialshares = Socialshare::where('status', 1)->orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = Contact::first();
 
         $route_name = 'front.service';
         $locale = app()->getLocale();
 
         return view('front.pages.service', compact(
             'settings', 
-            'services',
             'route_name', 
-            'locale',
-            'translations'
+            'locale', 
+            'header', 
+            'services',
+            'translations',
+            'allServices',
+            'socialfooters',
+            'socialshares',
+            'contactInfo'
         ));
     }
 
@@ -75,6 +93,17 @@ class ServiceController extends Controller
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
         
+        // Navbar için gerekli çevirileri içeren header dizisini oluştur
+        $navbarKeys = ['home', 'about', 'services', 'pages', 'portfolio', 'contact_us', 'shop', 'cart', 'blog'];
+        $header = new \stdClass();
+        foreach ($navbarKeys as $key) {
+            $translation = $translations->where('key', $key)->first();
+            if ($translation) {
+                $field = $key . '_' . app()->getLocale();
+                $header->$field = $translation->{'value_' . app()->getLocale()};
+            }
+        }
+
         // Settings için çevirileri hazırla
         $settings = [];
         foreach ($translations as $translation) {
@@ -85,17 +114,11 @@ class ServiceController extends Controller
         $defaultSettings = [
             'home' => 'Ana Sayfa',
             'about' => 'Hakkımızda',
-            'about_us' => 'Hakkımızda',
             'services' => 'Hizmetler',
-            'service' => 'Hizmet',
-            'service_details' => 'Hizmet Detayları',
             'products' => 'Ürünler',
             'blog' => 'Blog',
             'contact' => 'İletişim',
             'search' => 'Ara',
-            'what_we_do' => 'Ne Yapıyoruz',
-            'services_we_offer' => 'Sunduğumuz Hizmetler',
-            'read_more' => 'Devamını Oku',
             
             // Footer çevirileri
             'contact_us' => 'Bize Ulaşın',
@@ -115,23 +138,35 @@ class ServiceController extends Controller
         ];
 
         $settings = array_merge($defaultSettings, $settings);
-
-        // Service detayını getir
-        $service = Service::findOrFail($id);
         
-        // Tüm servisleri getir
+        $service = Service::findOrFail($id);
+        $services = Service::latest()->take(4)->get();
         $allServices = Service::all();
+        
+        // Footer sosyal medya ikonları
+        $socialfooters = Socialfooter::orderBy('order')->get();
+        
+        // Sosyal paylaşım ikonları
+        $socialshares = Socialshare::where('status', 1)->orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = Contact::first();
 
         $route_name = 'front.service.show';
         $locale = app()->getLocale();
 
         return view('front.pages.service-details', compact(
             'settings', 
-            'service',
             'route_name', 
-            'locale',
+            'locale', 
+            'header', 
+            'service',
+            'services',
             'translations',
-            'allServices'
+            'allServices',
+            'socialfooters',
+            'socialshares',
+            'contactInfo'
         ));
     }
 } 

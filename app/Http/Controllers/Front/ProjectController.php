@@ -52,6 +52,12 @@ class ProjectController extends Controller
 
         $projects = Project::where('status', 1)->latest()->paginate(9);
         $allServices = Service::all();
+        
+        // Footer sosyal medya ikonları
+        $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = \App\Models\Contact::first();
 
         $route_name = 'front.project.index';
         $locale = app()->getLocale();
@@ -62,7 +68,9 @@ class ProjectController extends Controller
             'translations',
             'route_name',
             'locale',
-            'allServices'
+            'allServices',
+            'socialfooters',
+            'contactInfo'
         ));
     }
 
@@ -97,6 +105,12 @@ class ProjectController extends Controller
             ->get();
 
         $allServices = Service::all();
+        
+        // Footer sosyal medya ikonları
+        $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = \App\Models\Contact::first();
 
         $route_name = 'front.project.show';
         $locale = app()->getLocale();
@@ -108,7 +122,9 @@ class ProjectController extends Controller
             'translations',
             'route_name',
             'locale',
-            'allServices'
+            'allServices',
+            'socialfooters',
+            'contactInfo'
         ));
     }
 }

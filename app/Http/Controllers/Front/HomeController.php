@@ -86,6 +86,12 @@ class HomeController extends Controller
         $homeFollows = HomeFollow::where('status', 1)->latest()->get();
         $keyfiyet = Keyfiyet::first();
         
+        // Footer sosyal medya ikonları
+        $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = \App\Models\Contact::first();
+        
         // Hizmetleri çek (navbar için)
         $allServices = Service::all();
 
@@ -100,7 +106,9 @@ class HomeController extends Controller
             'homeFollows',
             'keyfiyet',
             'translations',
-            'allServices'
+            'allServices',
+            'socialfooters',
+            'contactInfo'
         ));
     }
 
@@ -253,6 +261,9 @@ class HomeController extends Controller
         // İletişim formu için ek veriler
         $contactData = \App\Models\ContactData::where('status', 1)->first();
         
+        // Footer sosyal medya ikonları
+        $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
+        
         // Hizmetleri çek (navbar için)
         $allServices = Service::all();
 
@@ -268,7 +279,8 @@ class HomeController extends Controller
             'allServices',
             'contactInfo',
             'contactPhoto',
-            'contactData'
+            'contactData',
+            'socialfooters'
         ));
     }
 } 

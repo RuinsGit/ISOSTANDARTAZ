@@ -8,6 +8,9 @@ use App\Models\TranslationManage;
 use App\Models\About;
 use App\Models\Partner;
 use App\Models\Team;
+use App\Models\Service;
+use App\Models\AboutCenterCart;
+use Illuminate\Support\Facades\Log;
 
 class AboutController extends Controller
 {
@@ -54,27 +57,48 @@ class AboutController extends Controller
         ];
 
         $settings = array_merge($defaultSettings, $settings);
-
-        // About verilerini getir
-        $about = About::first();
         
-        // Partner verilerini getir
-        $partners = Partner::active()->ordered()->get();
+        // About modelden verileri al
+        $about = About::where('status', 1)->first();
         
-        // Ekip üyelerini getir
-        $teams = Team::where('status', 1)->orderBy('position_az')->get();
+        // AboutCenterCart modelinden verileri al
+        $aboutCenterCart = AboutCenterCart::first();
+        
+        // Eğer image yoksa eklenmesi için kontrol
+        if ($aboutCenterCart && !$aboutCenterCart->image) {
+            Log::info('AboutCenterCart image missing for ID: ' . $aboutCenterCart->id);
+        }
+        
+        // Partners verilerini al
+        $partners = Partner::where('status', 1)->orderBy('order')->get();
+        
+        // Takım üyelerini al
+        $teams = Team::where('status', 1)->latest()->get();
+        
+        // Footer sosyal medya ikonları
+        $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
+        
+        // İletişim bilgilerini al
+        $contactInfo = \App\Models\Contact::first();
+        
+        // Hizmetleri çek (navbar için)
+        $allServices = Service::all();
 
         $route_name = 'front.about';
         $locale = app()->getLocale();
 
         return view('front.pages.about', compact(
             'settings', 
-            'about',
             'route_name', 
-            'locale',
+            'locale', 
+            'about', 
+            'partners', 
+            'teams',
             'translations',
-            'partners',
-            'teams'
+            'allServices',
+            'socialfooters',
+            'contactInfo',
+            'aboutCenterCart'
         ));
     }
 } 
