@@ -56,9 +56,10 @@
     </button>
 
     <!-- Breadcrumb Section Start -->
+
     <div
-      class="breadcrumb-wrapper section-bg bg-cover position-relative"
-      style="background-image: url('{{ asset($project->image) }}'); background-position: center;"
+      class="breadcrumb-wrapper section-bg bg-cover position-relative"  
+      style="background-image: url('{{ $blogHero && $blogHero->image_path ? asset('storage/' . $blogHero->image_path) : asset('front/assets/img/breadcrumb-bg.jpg') }}'); background-position: center;"
     >
       <div class="overlay-dark position-absolute w-100 h-100" style="background-color: rgba(0, 0, 0, 0.6); top: 0; left: 0;"></div>
       <div class="container position-relative">

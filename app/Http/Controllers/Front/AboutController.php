@@ -11,6 +11,7 @@ use App\Models\Team;
 use App\Models\Service;
 use App\Models\AboutCenterCart;
 use Illuminate\Support\Facades\Log;
+use App\Models\BlogHero;
 
 class AboutController extends Controller
 {
@@ -61,6 +62,9 @@ class AboutController extends Controller
         // About modelden verileri al
         $about = About::where('status', 1)->first();
         
+        // BlogHero bilgilerini al
+        $blogHero = BlogHero::where('status', 1)->first();
+        
         // AboutCenterCart modelinden verileri al
         $aboutCenterCart = AboutCenterCart::first();
         
@@ -98,7 +102,8 @@ class AboutController extends Controller
             'allServices',
             'socialfooters',
             'contactInfo',
-            'aboutCenterCart'
+            'aboutCenterCart',
+            'blogHero'
         ));
     }
 } 

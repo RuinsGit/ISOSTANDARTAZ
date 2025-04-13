@@ -52,6 +52,12 @@
                                 <span >Logo</span>
                             </a>
                         </li>
+                        <li>
+                        <a href="{{ route('back.pages.blog-hero.index') }}" style="color: white;">
+                            <i class="ri-slideshow-line" style="color: white;"></i>
+                            <span>Bannerler</span>
+                        </a>
+                    </li>
 
 
                     </ul>
@@ -310,7 +316,7 @@
                             <span>Contact Parametrləri</span>
                         </a>
                     </li>
-
+                  
               
 
                 

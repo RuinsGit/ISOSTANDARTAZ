@@ -35,7 +35,7 @@ use App\Http\Controllers\Admin\ContactRequestController;
 use App\Http\Controllers\Admin\ContactDataController;
 use App\Http\Controllers\Admin\ContactPhotoController;
 use App\Http\Controllers\Admin\AboutCenterCartController;
-
+use App\Http\Controllers\Admin\BlogHeroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +79,7 @@ Route::prefix('news')->name('front.news.')->group(function () {
     Route::get('/{slug}', [App\Http\Controllers\Front\NewsController::class, 'show'])->name('show');
     Route::get('/category/{slug}', [App\Http\Controllers\Front\NewsController::class, 'category'])->name('category');
 });
+
 
 // Front Product Routes
 Route::prefix('products')->name('front.products.')->group(function () {
@@ -333,6 +334,12 @@ Route::prefix('admin')->group(function () {
              Route::post('about-center-cart/toggle-status/{id}', [AboutCenterCartController::class, 'toggleStatus'])->name('about-center-cart.toggle-status');
              Route::post('/admin/about-center-cart/upload-image', [AboutCenterCartController::class, 'uploadImage'])->name('about-center-cart.upload-image');
              
+    // Blog Hero Routes
+    Route::prefix('blog-hero')->name('blog-hero.')->group(function () {
+        Route::get('/', [BlogHeroController::class, 'index'])->name('index');
+        Route::put('/update', [BlogHeroController::class, 'update'])->name('update');
+        Route::get('/toggle-status', [BlogHeroController::class, 'toggleStatus'])->name('toggle-status');
+    });
 
         });
 

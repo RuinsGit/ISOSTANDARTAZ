@@ -46,7 +46,7 @@
     </div>
     <!-- Breadcrumb Section Start -->
     <div class="breadcrumb-wrapper section-bg bg-cover"
-         style="background-image: url('{{ asset(isset($service->bottom_image) ? $service->bottom_image : 'front/assets/img/breadcrumb-bg.jpg') }}')">
+         style="background-image: url('{{ $blogHero && $blogHero->image_path ? asset('storage/' . $blogHero->image_path) : asset('front/assets/img/breadcrumb-bg.jpg') }}')">
         <div class="overlay-dark"></div>
       <div class="container">
         <div class="page-heading">

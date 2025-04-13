@@ -9,6 +9,7 @@ use App\Models\Service;
 use App\Models\Socialfooter;
 use App\Models\Socialshare;
 use App\Models\Contact;
+use App\Models\BlogHero;
 
 class ServiceController extends Controller
 {
@@ -71,6 +72,8 @@ class ServiceController extends Controller
         // İletişim bilgilerini al
         $contactInfo = Contact::first();
 
+        $blogHero = BlogHero::where('status', 1)->first();
+
         $route_name = 'front.service';
         $locale = app()->getLocale();
 
@@ -84,7 +87,8 @@ class ServiceController extends Controller
             'allServices',
             'socialfooters',
             'socialshares',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 
@@ -152,6 +156,8 @@ class ServiceController extends Controller
         // İletişim bilgilerini al
         $contactInfo = Contact::first();
 
+        $blogHero = BlogHero::where('status', 1)->first();
+
         $route_name = 'front.service.show';
         $locale = app()->getLocale();
 
@@ -166,7 +172,8 @@ class ServiceController extends Controller
             'allServices',
             'socialfooters',
             'socialshares',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 } 

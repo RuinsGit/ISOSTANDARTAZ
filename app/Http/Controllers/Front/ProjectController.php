@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\TranslationManage;
 use App\Models\Service;
-
+use App\Models\BlogHero;
 class ProjectController extends Controller
 {
     protected $defaultTranslations = [
@@ -52,10 +52,9 @@ class ProjectController extends Controller
 
         $projects = Project::where('status', 1)->latest()->paginate(9);
         $allServices = Service::all();
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         // Footer sosyal medya ikonları
         $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
-        
         // İletişim bilgilerini al
         $contactInfo = \App\Models\Contact::first();
 
@@ -70,7 +69,8 @@ class ProjectController extends Controller
             'locale',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 
@@ -108,7 +108,7 @@ class ProjectController extends Controller
         
         // Footer sosyal medya ikonları
         $socialfooters = \App\Models\Socialfooter::orderBy('order')->get();
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         // İletişim bilgilerini al
         $contactInfo = \App\Models\Contact::first();
 
@@ -124,7 +124,8 @@ class ProjectController extends Controller
             'locale',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 }

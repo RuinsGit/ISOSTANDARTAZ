@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Service;
-
+use App\Models\BlogHero;
 class HomeController extends Controller
 {
     public function index()
     {
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         // Settings için çevirileri hazırla
         $settings = [];
         foreach ($translations as $translation) {
@@ -108,7 +108,8 @@ class HomeController extends Controller
             'translations',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 
@@ -116,7 +117,7 @@ class HomeController extends Controller
     {
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         // Header için çevirileri hazırla
         $header = new \stdClass();
         foreach ($translations as $translation) {
@@ -155,7 +156,8 @@ class HomeController extends Controller
             'locale', 
             'header',
             'translations',
-            'allServices'
+            'allServices',
+            'blogHero'
         ));
     }
 
@@ -193,7 +195,7 @@ class HomeController extends Controller
     {
         // Tüm çevirileri al
         $translations = TranslationManage::where('status', 1)->get();
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         // Settings için çevirileri hazırla
         $settings = [];
         foreach ($translations as $translation) {
@@ -280,7 +282,8 @@ class HomeController extends Controller
             'contactInfo',
             'contactPhoto',
             'contactData',
-            'socialfooters'
+            'socialfooters',
+            'blogHero'
         ));
     }
 } 

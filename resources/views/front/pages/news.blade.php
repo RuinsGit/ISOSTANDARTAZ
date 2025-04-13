@@ -151,7 +151,7 @@
     <!-- Breadcrumb Section Start -->
     <div
       class="breadcrumb-wrapper section-bg bg-cover"
-      style="background-image: url('{{ asset('front/assets/img/breadcrumb-bg.jpg') }}')"
+      style="background-image: url('{{ $blogHero && $blogHero->image_path ? asset('storage/' . $blogHero->image_path) : asset('front/assets/img/breadcrumb-bg.jpg') }}')"
     >
       <div class="container">
         <div class="page-heading">

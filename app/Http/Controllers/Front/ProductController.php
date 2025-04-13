@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\TranslationManage;
 use Illuminate\Support\Facades\Session;
 use App\Models\Service;
+use App\Models\BlogHero;
 
 class ProductController extends Controller
 {
@@ -63,8 +64,9 @@ class ProductController extends Controller
             ->get();
 
         $allServices = Service::all();
+        $blogHero = BlogHero::where('status', 1)->first();
 
-        return view('front.pages.Product', compact('products', 'suggestedProducts', 'settings', 'translations', 'allServices'));
+        return view('front.pages.Product', compact('products', 'suggestedProducts', 'settings', 'translations', 'allServices', 'blogHero'));
     }
 
     public function show($slug)
@@ -74,6 +76,8 @@ class ProductController extends Controller
         foreach ($translations as $translation) {
             $settings[$translation->key] = $translation->{'value_' . app()->getLocale()};
         }
+
+        $blogHero = BlogHero::where('status', 1)->first();
 
         $product = Product::where('slug_' . app()->getLocale(), $slug)
             ->where('status', 1)
@@ -89,8 +93,9 @@ class ProductController extends Controller
 
         $allServices = Service::all();
 
-        return view('front.pages.product-details', compact('product', 'suggestedProducts', 'settings', 'translations', 'allServices'));
+        return view('front.pages.product-details', compact('product', 'suggestedProducts', 'settings', 'translations', 'allServices', 'blogHero'));
     }
+
 
     public function cart()
     {
@@ -101,8 +106,8 @@ class ProductController extends Controller
         }
         
         $allServices = Service::all();
-
-        return view('front.pages.cart', compact('settings', 'allServices'));
+        $blogHero = BlogHero::where('status', 1)->first();
+        return view('front.pages.cart', compact('settings', 'allServices', 'blogHero'));
     }
 
     public function wishlist()
@@ -120,8 +125,9 @@ class ProductController extends Controller
             ->get();
 
         $allServices = Service::all();
+        $blogHero = BlogHero::where('status', 1)->first();
 
-        return view('front.pages.wishlist', compact('products', 'settings', 'translations', 'allServices'));
+        return view('front.pages.wishlist', compact('products', 'settings', 'translations', 'allServices', 'blogHero'));
     }
 
     public function addToCart(Request $request)
@@ -132,7 +138,7 @@ class ProductController extends Controller
         $sizeId = $request->input('size_id');
         
         $product = Product::find($productId);
-        
+        $blogHero = BlogHero::where('status', 1)->first();
         if (!$product) {
             return response()->json([
                 'success' => false,
@@ -197,7 +203,7 @@ class ProductController extends Controller
         if (!in_array($productId, $wishlist)) {
             $wishlist[] = $productId;
         }
-        
+
         Session::put('wishlist', $wishlist);
         
         return response()->json([

@@ -10,6 +10,7 @@ use App\Models\TranslationManage;
 use App\Models\Service;
 use App\Models\Socialfooter;
 use App\Models\Contact;
+use App\Models\BlogHero;
 
 class NewsController extends Controller
 {
@@ -124,6 +125,9 @@ class NewsController extends Controller
         // Hizmetleri çek (navbar için)
         $allServices = Service::all();
 
+        // BlogHero bilgilerini al
+        $blogHero = BlogHero::where('status', 1)->first();
+
         $route_name = 'front.news.index';
         $locale = app()->getLocale();
 
@@ -138,7 +142,8 @@ class NewsController extends Controller
             'translations',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 
@@ -186,6 +191,9 @@ class NewsController extends Controller
         // İletişim bilgilerini al
         $contactInfo = Contact::first();
 
+        // BlogHero bilgilerini al
+        $blogHero = BlogHero::where('status', 1)->first();
+
         $route_name = 'front.news.show';
         $locale = app()->getLocale();
 
@@ -202,7 +210,8 @@ class NewsController extends Controller
             'header',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 
@@ -241,6 +250,9 @@ class NewsController extends Controller
         // İletişim bilgilerini al
         $contactInfo = Contact::first();
 
+        // BlogHero bilgilerini al
+        $blogHero = BlogHero::where('status', 1)->first();
+
         $route_name = 'front.news.category';
         $locale = app()->getLocale();
 
@@ -256,7 +268,8 @@ class NewsController extends Controller
             'header',
             'allServices',
             'socialfooters',
-            'contactInfo'
+            'contactInfo',
+            'blogHero'
         ));
     }
 } 
