@@ -165,6 +165,7 @@ class HomeController extends Controller
     {
         try {
             $validated = $request->validate([
+                'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
                 'website' => 'nullable|string|max:255',
                 'comment' => 'required|string',
@@ -172,14 +173,21 @@ class HomeController extends Controller
 
             DB::beginTransaction();
             
+            // İletişim formu kaydını oluştur
             $contactRequest = ContactRequest::create([
+                'name' => $validated['name'],
                 'email' => $validated['email'],
                 'website' => $validated['website'] ?? null,
                 'comment' => $validated['comment'],
                 'status' => false 
             ]);
 
-            Mail::to('museyibli.ruhin@gmail.com')->send(new ContactMail($contactRequest));
+            // E-posta gönderimini devre dışı bırak, sadece kaydet
+            Log::info('Yeni bir iletişim mesajı kaydedildi.', [
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'comment' => substr($validated['comment'], 0, 100) . '...' // Sadece başlangıcını logla
+            ]);
             
             DB::commit();
 

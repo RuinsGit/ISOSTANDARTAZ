@@ -5,16 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\BlogHero;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-
-
-use Illuminate\Support\Facades\Artisan;
 
 class BlogHeroController extends Controller
 {
     public function index()
     {
-        Artisan::call('migrate');
         $blogHero = BlogHero::first();
         return view('back.admin.blog-hero.index', compact('blogHero'));
     }
@@ -37,8 +34,10 @@ class BlogHeroController extends Controller
             if ($blogHero->image_path && Storage::disk('public')->exists($blogHero->image_path)) {
                 Storage::disk('public')->delete($blogHero->image_path);
             }
+            
             // Yeni resmi yükle
-            $data['image_path'] = $request->file('image')->store('blog-hero', 'public');
+            $imagePath = $request->file('image')->store('blog-hero', 'public');
+            $data['image_path'] = $imagePath;
         }
 
         $blogHero->fill($data);

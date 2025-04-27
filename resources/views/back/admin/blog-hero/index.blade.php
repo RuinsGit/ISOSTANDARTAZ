@@ -1,3 +1,6 @@
+@php
+    require_once(base_path('resources/views/helpers.php'));
+@endphp
 @extends('back.layouts.master')
 
 @section('content')

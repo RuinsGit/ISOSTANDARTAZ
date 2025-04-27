@@ -314,6 +314,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/{contactRequest}/show', [ContactRequestController::class, 'show'])->name('contact-requests.show');
                 Route::delete('/{contactRequest}', [ContactRequestController::class, 'destroy'])->name('contact-requests.destroy');
                 Route::post('/toggle-status/{id}', [ContactRequestController::class, 'toggleStatus'])->name('contact-requests.toggle-status');
+                Route::post('/send-test-email/{id}', [ContactRequestController::class, 'sendTestEmail'])->name('contact-requests.send-test-email');
             });
 
             Route::prefix('contact-data')->group(function () {

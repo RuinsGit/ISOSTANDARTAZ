@@ -3,6 +3,8 @@
 
 Aşağıdaki bilgilerle yeni bir iletişim formu dolduruldu:
 
+**İsim:** {{ $contactRequest->name }}
+
 **E-posta:** {{ $contactRequest->email }}
 
 @if($contactRequest->website)

@@ -62,8 +62,8 @@
               class="offcanvas__top mb-5 d-flex justify-content-between align-items-center"
             >
               <div class="offcanvas__logo">
-                <a href="index.html">
-                  <img src="assets/img/logo/black-logo.svg" alt="logo-img" />
+                <a href="{{ route('front.index') }}">
+                  <img src="{{ asset('front/assets/img/logo/black-logo.svg') }}" alt="logo-img" />
                 </a>
               </div>
               <div class="offcanvas__close">
@@ -121,7 +121,7 @@
                 </li>
               </ul>
               <div class="header-button mt-4">
-                <a href="contact.html" class="theme-btn text-center">
+                <a href="{{ route('front.contact') }}" class="theme-btn text-center">
                   Get A Quote
                 </a>
               </div>
@@ -286,6 +286,22 @@
                   @endif
                   
                   <div class="row g-4">
+                    <div class="col-lg-6">
+                      <div class="form-clt">
+                        <span>{{ $settings['your_name'] ?? 'Adınız*' }}</span>
+                        <input
+                          type="text"
+                          name="name"
+                          id="name"
+                          placeholder="{{ $settings['your_name'] ?? 'Adınız' }}"
+                          value="{{ old('name') }}"
+                          required
+                        />
+                        @error('name')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div>
                     <div class="col-lg-6">
                       <div class="form-clt">
                         <span>{{ $settings['your_email'] ?? 'E-posta Adresiniz*' }}</span>

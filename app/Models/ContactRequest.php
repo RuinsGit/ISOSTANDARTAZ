@@ -10,6 +10,7 @@ class ContactRequest extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'email',
         'website',
         'comment',
