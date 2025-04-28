@@ -1,12 +1,8 @@
-@php
-    require_once(base_path('resources/views/helpers.php'));
-@endphp
 @extends('back.layouts.master')
 
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
-            <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -20,92 +16,96 @@
                     </div>
                 </div>
             </div>
-            <!-- end page title -->
 
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-12">
                     <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="card-title mb-0">Blog Hero Listesi</h4>
+                                <a href="{{ route('back.pages.blog-hero.create') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Yeni Ekle
+                                </a>
+                            </div>
+                        </div>
                         <div class="card-body">
-                            <h4 class="card-title">Blog Hero Məlumatlarını Redaktə Et</h4>
-
-                            @if($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
                                 </div>
                             @endif
 
-                            <form action="{{ route('back.pages.blog-hero.update') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-
-                                <div class="row">
-                                    <!-- Mevcut Resim -->
-                                    @if($blogHero && $blogHero->image_path)
-                                        <div class="col-md-12 mb-3">
-                                            <div class="current-image">
-                                                <img src="{{ asset('storage/' . $blogHero->image_path) }}" alt="Mevcut Resim" class="img-thumbnail" style="max-height: 200px">
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                    <!-- Resim Yükleme -->
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label">Hero Şəkli</label>
-                                            <input type="file" class="form-control" name="image" accept=".png,.jpg,.jpeg,.gif,.svg,.webp">
-                                            @if($blogHero && $blogHero->image_path)
-                                                <small class="form-text text-muted">Yeni bir şəkil yükləyəniz, əvvəlki şəkil silinəcək.</small>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Alt Metinleri -->
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Alt Mətn (AZ)</label>
-                                            <input type="text" class="form-control" name="alt_az" value="{{ $blogHero->alt_az ?? '' }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Alt Mətn (EN)</label>
-                                            <input type="text" class="form-control" name="alt_en" value="{{ $blogHero->alt_en ?? '' }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label">Alt Mətn (RU)</label>
-                                            <input type="text" class="form-control" name="alt_ru" value="{{ $blogHero->alt_ru ?? '' }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- Durum -->
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="statusSwitch" 
-                                                    {{ ($blogHero && $blogHero->status) ? 'checked' : '' }}
-                                                    onclick="window.location.href='{{ route('back.pages.blog-hero.toggle-status') }}'">
-                                                <label class="form-check-label" for="statusSwitch">Aktiv/Deaktiv</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
                                 </div>
+                            @endif
 
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Yadda Saxla</button>
-                                </div>
-                            </form>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Resim</th>
+                                            <th>Alt (AZ)</th>
+                                            <th>Alt (EN)</th>
+                                            <th>Alt (RU)</th>
+                                            <th>Durum</th>
+                                            <th>İşlemler</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($blogHeroes as $hero)
+                                            <tr>
+                                                <td>{{ $hero->id }}</td>
+                                                <td>
+                                                    @if($hero->image_path)
+                                                        <img src="{{ asset($hero->image_path) }}" alt="{{ $hero->alt_az }}" class="img-thumbnail" style="max-height: 100px">
+                                                    @else
+                                                        <span class="text-muted">Resim yok</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $hero->alt_az }}</td>
+                                                <td>{{ $hero->alt_en }}</td>
+                                                <td>{{ $hero->alt_ru }}</td>
+                                                <td>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox" 
+                                                            {{ $hero->status ? 'checked' : '' }}
+                                                            onclick="window.location.href='{{ route('back.pages.blog-hero.toggle-status', $hero->id) }}'">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group" role="group">
+                                                        <a href="{{ route('back.pages.blog-hero.edit', $hero->id) }}" 
+                                                           class="btn btn-info btn-sm">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <form action="{{ route('back.pages.blog-hero.destroy', $hero->id) }}" 
+                                                              method="POST" 
+                                                              onsubmit="return confirm('Bu kaydı silmek istediğinizden emin misiniz?')"
+                                                              style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center">Henüz kayıt bulunmuyor.</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

@@ -1,34 +1,15 @@
 <?php
 
-if (!function_exists('get_image_url')) {
+/**
+ * Laravel uygulaması için helper fonksiyonlar
+ */
+
+if (!function_exists('public_path')) {
     /**
-     * Resim URL'sini doğru şekilde oluşturan yardımcı fonksiyon
-     *
-     * @param string|null $path
-     * @return string
+     * InfinityFree için public_path fonksiyonunu düzeltme
      */
-    function get_image_url($path = null)
+    function public_path($path = '')
     {
-        if (empty($path)) {
-            return asset('images/no-image.png');
-        }
-
-        // Eğer path zaten http ile başlıyorsa, doğrudan döndür
-        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
-            return $path;
-        }
-
-        // Eğer path zaten public/storage ile başlıyorsa, bunu kaldır
-        if (str_starts_with($path, 'public/storage/')) {
-            $path = str_replace('public/storage/', '', $path);
-        }
-
-        // Eğer path zaten storage/ ile başlıyorsa
-        if (str_starts_with($path, 'storage/')) {
-            return asset($path);
-        }
-
-        // Normal storage path ise
-        return asset('storage/' . $path);
+        return rtrim(__DIR__, '/app') . '/public/' . ltrim($path, '/');
     }
 } 

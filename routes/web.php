@@ -338,8 +338,12 @@ Route::prefix('admin')->group(function () {
     // Blog Hero Routes
     Route::prefix('blog-hero')->name('blog-hero.')->group(function () {
         Route::get('/', [BlogHeroController::class, 'index'])->name('index');
-        Route::put('/update', [BlogHeroController::class, 'update'])->name('update');
-        Route::get('/toggle-status', [BlogHeroController::class, 'toggleStatus'])->name('toggle-status');
+        Route::get('/create', [BlogHeroController::class, 'create'])->name('create');
+        Route::post('/store', [BlogHeroController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [BlogHeroController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [BlogHeroController::class, 'update'])->name('update');
+        Route::delete('/{id}', [BlogHeroController::class, 'destroy'])->name('destroy');
+        Route::get('/{id}/toggle-status', [BlogHeroController::class, 'toggleStatus'])->name('toggle-status');
     });
 
         });

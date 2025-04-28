@@ -151,7 +151,7 @@
     <!-- Breadcrumb Section Start -->
     <div
       class="breadcrumb-wrapper section-bg bg-cover position-relative"
-      style="background-image: url('{{ isset($blogHero) && $blogHero->image_path ? asset('storage/' . $blogHero->image_path) : (isset($blog) && $blog->bottom_image ? asset($blog->bottom_image) : asset('front/assets/img/breadcrumb-bg.jpg')) }}'); background-position: center;"
+      style="background-image: url('{{ isset($blogHero) && $blogHero->image_path ? asset($blogHero->image_path) : (isset($blog) && $blog->bottom_image ? asset($blog->bottom_image) : asset('front/assets/img/breadcrumb-bg.jpg')) }}'); background-position: center;"
     >
       <div class="overlay-dark position-absolute w-100 h-100" style="background-color: rgba(0, 0, 0, 0.5); top: 0; left: 0;"></div>
       <div class="container position-relative">
